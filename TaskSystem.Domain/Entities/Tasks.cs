@@ -24,6 +24,8 @@ namespace TaskSystem.Domain.Entities
 		[BsonElement("CompletationDate")]
 		public DateTime CompletationDate { get; private set; }
 
+
+
 		public Tasks(string title, string description)
 		{
 			Id = new Guid();
@@ -31,6 +33,9 @@ namespace TaskSystem.Domain.Entities
 			Description = description;
 			CreationDate = DateTime.Now;
 		}
+
+		//PRECISA?
+		public void NewTask(Guid id) => Id = id;
 
 		public void UpdateTitle(string title) => Title = title;
 
