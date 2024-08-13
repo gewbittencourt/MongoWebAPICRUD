@@ -86,7 +86,7 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 		{
 			var filter = Builders<Tasks>.Filter.Eq(x => x.Id, id);
 			var update = Builders<Tasks>.Update
-				.Set(x => x.CreationDate, DateTime.Now);
+				.Set(x => x.CompletationDate, DateTime.Now);
 
 			var result = await _tasks.UpdateOneAsync(filter, update, null, cancellationToken);
 			return result.ModifiedCount == 1;

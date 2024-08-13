@@ -25,9 +25,11 @@ namespace TaskSystem.Service.Services
 
 		}
 
-		public Task<bool> CompletedTask(Guid id, CancellationToken cancellationToken)
+		public async Task<bool> CompletedTask(Guid id, CancellationToken cancellationToken)
 		{
-			throw new NotImplementedException();
+			var result = await _taskRepository.CompletedTask(id, cancellationToken);
+			return result;
+
 		}
 
 		public async Task<TasksDTO> CreateNewTask(TasksDTO tasksDTO, CancellationToken cancellationToken)
@@ -44,24 +46,35 @@ namespace TaskSystem.Service.Services
 
 		}
 
-		public Task<bool> DeleteTask(Guid id, CancellationToken cancellationToken)
+		public async Task<bool> DeleteTask(Guid id, CancellationToken cancellationToken)
 		{
-			throw new NotImplementedException();
+			var result = await _taskRepository.DeleteTask(id, cancellationToken);
+			return result;
 		}
 
-		public Task<IEnumerable<TasksDTO>> GetAllTasks(CancellationToken cancellationToken)
+		public async Task<IEnumerable<TasksDTO>> GetAllTasks(CancellationToken cancellationToken)
 		{
-			throw new NotImplementedException();
+			var result = await _taskRepository.GetAllTasks(cancellationToken);
+			var returnList = _mapper.Map<IEnumerable<TasksDTO>>(result);
+			return returnList;
 		}
 
-		public Task<TasksDTO> GetDetailedTask(Guid id, CancellationToken cancellationToken)
+		public async Task<TasksDTO> GetDetailedTask(Guid id, CancellationToken cancellationToken)
 		{
-			throw new NotImplementedException();
+			var result = await _taskRepository.GetDetailedTask(id, cancellationToken);
+			var returnObject = _mapper.Map<TasksDTO>(result);
+			return returnObject;
 		}
 
-		public Task<bool> UpdateTask(Guid id, TasksDTO tasksDTO, CancellationToken cancellationToken)
+		public async Task<bool> UpdateTask(Guid id, TasksDTO tasksDTO, CancellationToken cancellationToken)
 		{
-			throw new NotImplementedException();
+			var tasks = _mapper.Map<Tasks>(tasksDTO);
+			var result = await _taskRepository.UpdateTask(id, tasks, cancellationToken);
+			return result;
 		}
+
+
+
+
 	}
 }
