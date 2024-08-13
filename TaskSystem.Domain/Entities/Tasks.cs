@@ -28,7 +28,6 @@ namespace TaskSystem.Domain.Entities
 
 		public Tasks(string title, string description)
 		{
-			Id = new Guid();
 			Title = title;
 			Description = description;
 			CreationDate = DateTime.Now;
