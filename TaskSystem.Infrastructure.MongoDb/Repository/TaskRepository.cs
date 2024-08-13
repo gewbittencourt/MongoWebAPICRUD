@@ -31,7 +31,6 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 
 		public async Task<Tasks> CreateNewTask(Tasks tasks, CancellationToken cancellationToken)
 		{
-			//tasks.NewTask(Guid.NewGuid());
 			await _tasks.InsertOneAsync(tasks, cancellationToken);
 			return tasks;
 
