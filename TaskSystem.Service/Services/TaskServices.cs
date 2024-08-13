@@ -35,6 +35,7 @@ namespace TaskSystem.Service.Services
 		public async Task<TasksDTO> CreateNewTask(TasksDTO tasksDTO, CancellationToken cancellationToken)
 		{
 			var task = new Tasks(title: tasksDTO.Title, description: tasksDTO.Description);
+			task.NewTask(Guid.NewGuid());
 			var addCheck = await _taskRepository.CreateNewTask(task, cancellationToken);
 			if (addCheck != null)
 			{
