@@ -19,7 +19,7 @@ namespace TaskSystem.Domain.Interfaces
 
 		Task<bool> UpdateTask(Guid id, Tasks task, CancellationToken cancellationToken);
 
-		Task<bool>	DeleteTask(Guid id, CancellationToken cancellationToken);
+		Task<bool> DeleteTask(Guid id, CancellationToken cancellationToken);
 
 		Task<bool> CompletedTask(Guid id, CancellationToken cancellationToken);
 

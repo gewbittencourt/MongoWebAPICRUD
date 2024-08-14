@@ -81,7 +81,7 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 			return result.ModifiedCount == 1;
 		}
 
-		public async Task<bool> CompletedTask (Guid id, CancellationToken cancellationToken)
+		public async Task<bool> CompletedTask(Guid id, CancellationToken cancellationToken)
 		{
 			var filter = Builders<Tasks>.Filter.Eq(x => x.Id, id);
 			var update = Builders<Tasks>.Update

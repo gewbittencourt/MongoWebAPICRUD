@@ -12,11 +12,12 @@ namespace TaskSystem.Infrastructure.MongoDb.Mapper
 	public class MappingClass : Profile
 	{
 
-		public MappingClass() { 
+		public MappingClass()
+		{
 
-			CreateMap<Tasks,TasksDTO>().ReverseMap();
-		
-		
+			CreateMap<Tasks, TasksDTO>().ReverseMap();
+
+
 		}
 
 	}
