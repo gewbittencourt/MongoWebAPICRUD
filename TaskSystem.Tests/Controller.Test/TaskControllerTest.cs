@@ -12,7 +12,7 @@ using TaskSystem.Service.Interface;
 
 namespace TaskSystem.Tests
 {
-	public  class TaskControllerTest
+	public class TaskControllerTest
 	{
 		private readonly TaskController _taskController;
 		private readonly Mock<ITaskService> _mockService;
@@ -30,16 +30,14 @@ namespace TaskSystem.Tests
 		{
 			//Arrange
 			var listTask = new List<TasksDTO>();
-			_mockService.Setup(services=>services.GetAllTasks(It.IsAny<CancellationToken>())).ReturnsAsync(listTask);
+			_mockService.Setup(services => services.GetAllTasks(It.IsAny<CancellationToken>())).ReturnsAsync(listTask);
 
 
 			//Act
-			
 			var result = await _taskController.GetAllTasks(null, It.IsAny<CancellationToken>());
 
 
 			//Asserts
-
 			Assert.NotNull(result);
 			Assert.IsType<JsonResult>(result);
 		}
@@ -47,10 +45,10 @@ namespace TaskSystem.Tests
 		[Fact]
 		public async Task GetDetailedTask_ReturnJson_WhenSuccessfull()
 		{
-			
+
 			//Arrange
 			var task = new TasksDTO();
-			_mockService.Setup(services=>services.GetDetailedTask(task.Id, It.IsAny<CancellationToken>())).ReturnsAsync(task);
+			_mockService.Setup(services => services.GetDetailedTask(task.Id, It.IsAny<CancellationToken>())).ReturnsAsync(task);
 
 
 			//Act
@@ -72,10 +70,9 @@ namespace TaskSystem.Tests
 
 
 			//Act
-
 			var result = await _taskController.Create(task, It.IsAny<CancellationToken>());
 
-
+			//Asserts
 			Assert.NotNull(result);
 			Assert.IsType<JsonResult>(result);
 		}
@@ -89,7 +86,7 @@ namespace TaskSystem.Tests
 			_mockService.Setup(service => service.DeleteTask(id, It.IsAny<CancellationToken>())).ReturnsAsync(true);
 
 
-			//act
+			//Act
 			var result = await _taskController.DeleteTask(id, It.IsAny<CancellationToken>());
 
 
@@ -106,8 +103,10 @@ namespace TaskSystem.Tests
 			var task = new TasksDTO();
 			_mockService.Setup(service => service.UpdateTask(task.Id, task, It.IsAny<CancellationToken>())).ReturnsAsync(true);
 
+
 			//Act
 			var result = await _taskController.UpdateTask(task.Id, task, It.IsAny<CancellationToken>());
+
 
 			//Asserts
 			Assert.NotNull(result);
@@ -121,13 +120,14 @@ namespace TaskSystem.Tests
 			var id = new Guid();
 			_mockService.Setup(service => service.CompletedTask(id, It.IsAny<CancellationToken>())).ReturnsAsync(true);
 
+
 			//Act
-			var result = await _taskController.CompleteTask(id,It.IsAny<CancellationToken>());
+			var result = await _taskController.CompleteTask(id, It.IsAny<CancellationToken>());
+
 
 			//Asserts
 			Assert.NotNull(result);
 			Assert.IsType<JsonResult>(result);
 		}
-
 	}
 }

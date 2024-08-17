@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TaskSystem.Infrastructure.MongoDb
-build_property.ProjectDir = C:\Aulas\MongoWebAPICRUD\TaskSystem.Infrastructure.MongoDb\
+build_property.ProjectDir = C:\Aula\Portifolio\TaskSystem\TaskSystem.Infrastructure.MongoDb\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
