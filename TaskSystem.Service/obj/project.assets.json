@@ -955,19 +955,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gewbi\\.nuget\\packages\\": {}
+    "C:\\Users\\ace\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Aula\\Portifolio\\TaskSystem\\TaskSystem.Service\\TaskSystem.Service.csproj",
+      "projectUniqueName": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\TaskSystem.Service.csproj",
       "projectName": "TaskSystem.Service",
-      "projectPath": "C:\\Aula\\Portifolio\\TaskSystem\\TaskSystem.Service\\TaskSystem.Service.csproj",
-      "packagesPath": "C:\\Users\\gewbi\\.nuget\\packages\\",
-      "outputPath": "C:\\Aula\\Portifolio\\TaskSystem\\TaskSystem.Service\\obj\\",
+      "projectPath": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\TaskSystem.Service.csproj",
+      "packagesPath": "C:\\Users\\ace\\.nuget\\packages\\",
+      "outputPath": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\gewbi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ace\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -982,8 +982,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Aula\\Portifolio\\TaskSystem\\TaskSystem.Domain\\TaskSystem.Domain.csproj": {
-              "projectPath": "C:\\Aula\\Portifolio\\TaskSystem\\TaskSystem.Domain\\TaskSystem.Domain.csproj"
+            "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Domain\\TaskSystem.Domain.csproj": {
+              "projectPath": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Domain\\TaskSystem.Domain.csproj"
             }
           }
         }

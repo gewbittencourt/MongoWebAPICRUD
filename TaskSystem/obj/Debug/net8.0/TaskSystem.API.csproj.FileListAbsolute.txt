@@ -151,3 +151,5 @@ C:\Aula\Portifolio\TaskSystem\TaskSystem\obj\Debug\net8.0\TaskSystem.API.genrunt
 C:\Aula\Portifolio\TaskSystem\TaskSystem\obj\Debug\net8.0\ref\TaskSystem.API.dll
 C:\Aula\Portifolio\TaskSystem\TaskSystem\bin\Debug\net8.0\Castle.Core.dll
 C:\Aula\Portifolio\TaskSystem\TaskSystem\bin\Debug\net8.0\Moq.dll
+C:\Aulas\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\Castle.Core.dll
+C:\Aulas\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\Moq.dll

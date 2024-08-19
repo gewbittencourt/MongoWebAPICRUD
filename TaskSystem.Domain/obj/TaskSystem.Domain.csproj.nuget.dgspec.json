@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Aula\\Portifolio\\TaskSystem\\TaskSystem.Domain\\TaskSystem.Domain.csproj": {}
+    "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Domain\\TaskSystem.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Aula\\Portifolio\\TaskSystem\\TaskSystem.Domain\\TaskSystem.Domain.csproj": {
+    "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Domain\\TaskSystem.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Aula\\Portifolio\\TaskSystem\\TaskSystem.Domain\\TaskSystem.Domain.csproj",
+        "projectUniqueName": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Domain\\TaskSystem.Domain.csproj",
         "projectName": "TaskSystem.Domain",
-        "projectPath": "C:\\Aula\\Portifolio\\TaskSystem\\TaskSystem.Domain\\TaskSystem.Domain.csproj",
-        "packagesPath": "C:\\Users\\gewbi\\.nuget\\packages\\",
-        "outputPath": "C:\\Aula\\Portifolio\\TaskSystem\\TaskSystem.Domain\\obj\\",
+        "projectPath": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Domain\\TaskSystem.Domain.csproj",
+        "packagesPath": "C:\\Users\\ace\\.nuget\\packages\\",
+        "outputPath": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\gewbi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ace\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

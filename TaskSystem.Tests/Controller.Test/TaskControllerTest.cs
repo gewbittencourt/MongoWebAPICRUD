@@ -79,7 +79,7 @@ namespace TaskSystem.Tests
 
 
 		[Fact]
-		public async Task DeleteTask_ReturnJson_WhenSuccessfull()
+		public async Task DeleteTask_ReturnOk_WhenSuccessfull()
 		{
 			//Arrange
 			var id = Guid.NewGuid();
@@ -92,12 +92,12 @@ namespace TaskSystem.Tests
 
 			//Asserts
 			Assert.NotNull(result);
-			Assert.IsType<JsonResult>(result);
+			Assert.IsType<OkObjectResult>(result);
 		}
 
 
 		[Fact]
-		public async Task UpdateUser_ReturnJson_WhenSuccessfull()
+		public async Task UpdateUser_ReturnOk_WhenSuccessfull()
 		{
 			//Arrange
 			var task = new TasksDTO();
@@ -110,11 +110,11 @@ namespace TaskSystem.Tests
 
 			//Asserts
 			Assert.NotNull(result);
-			Assert.IsType<JsonResult>(result);
+			Assert.IsType<OkObjectResult>(result);
 		}
 
 		[Fact]
-		public async Task CompleteTask_ReturnJson_WhenSuccessfull()
+		public async Task CompleteTask_ReturnOk_WhenSuccessfull()
 		{
 			//Arrange
 			var id = new Guid();
@@ -127,7 +127,7 @@ namespace TaskSystem.Tests
 
 			//Asserts
 			Assert.NotNull(result);
-			Assert.IsType<JsonResult>(result);
+			Assert.IsType<OkObjectResult>(result);
 		}
 	}
 }

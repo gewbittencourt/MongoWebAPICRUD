@@ -103,6 +103,7 @@ namespace TaskSystem.Tests.Service.Test
 			var taskDTO = new TasksDTO { Id = new Guid(), CompletationDate = DateTime.Now, CreationDate = DateTime.Now, Description = "teste", Title = "teste" };
 			var task = new Tasks(title: taskDTO.Title, description: taskDTO.Description);
 			task.NewTask(Guid.NewGuid());
+			taskDTO.Id = task.Id;
 			_mockTaskRepository.Setup(repository => repository.GetDetailedTask(task.Id, It.IsAny<CancellationToken>())).ReturnsAsync(task);
 			_mockMapper.Setup(mapper => mapper.Map<TasksDTO>(It.IsAny<Tasks>())).Returns(taskDTO);
 
