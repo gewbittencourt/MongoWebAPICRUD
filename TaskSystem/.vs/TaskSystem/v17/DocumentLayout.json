@@ -134,7 +134,7 @@
               "RelativeDocumentMoniker": "..\\TaskSystem.Tests\\Repository.Test\\TaskRepositoryTest.cs",
               "ToolTip": "C:\\Aula\\Portifolio\\TaskSystem\\TaskSystem.Tests\\Repository.Test\\TaskRepositoryTest.cs",
               "RelativeToolTip": "..\\TaskSystem.Tests\\Repository.Test\\TaskRepositoryTest.cs",
-              "ViewState": "AQIAALcAAAAAAAAAAAAIwNMAAAAXAAAA",
+              "ViewState": "AQIAALcAAAAAAAAAAAAIwNIAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-17T03:19:30.246Z",
               "EditorCaption": ""
@@ -487,8 +487,8 @@
       "VerticalTabListWidth": 256,
       "FloatingWindowState": {
         "Id": "f7964cad-2722-4c32-914f-a5aa8c7b0756",
-        "Display": 1,
-        "X": 504,
+        "Display": 0,
+        "X": 366,
         "Y": 324,
         "Width": 1562,
         "Height": 699,
