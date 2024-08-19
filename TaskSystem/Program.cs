@@ -32,8 +32,8 @@ namespace TaskSystem
 
 
 			builder.Services.AddSingleton<IMongoClient>(mongoclient);
-			builder.Services.AddTransient<ITaskRepository, TaskRepository>();
-			builder.Services.AddTransient<ITaskService, TaskServices>();
+			builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+			builder.Services.AddScoped<ITaskService, TaskServices>();
 
 			var app = builder.Build();
 

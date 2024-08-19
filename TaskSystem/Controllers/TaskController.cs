@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskSystem.Domain.Entities;
 using TaskSystem.Service.DTO;
 using TaskSystem.Service.Interface;
 
 namespace TaskSystem.API.Controllers
 {
-	[Route("api/[controller]")]
+	//[Route("api/[controller]")]
 	[ApiController]
 	public class TaskController : ControllerBase
 	{
@@ -16,7 +17,7 @@ namespace TaskSystem.API.Controllers
 			_taskService = taskService;
 		}
 
-		[HttpPost]
+		[HttpPost("create")]
 		public async Task<IActionResult> Create(TasksDTO taskDto, CancellationToken cancellationToken)
 		{
 			try
@@ -51,7 +52,7 @@ namespace TaskSystem.API.Controllers
 			}
 		}
 
-		[HttpGet]
+		[HttpGet("get")]
 		public async Task<IActionResult> GetAllTasks([FromQuery] Guid? id, CancellationToken cancellationToken)
 		{
 			try
@@ -98,7 +99,7 @@ namespace TaskSystem.API.Controllers
 
 
 
-		[HttpDelete]
+		[HttpDelete("delete")]
 		public async Task<IActionResult> DeleteTask(Guid id, CancellationToken cancellationToken)
 		{
 			try
@@ -136,7 +137,7 @@ namespace TaskSystem.API.Controllers
 		}
 
 
-		[HttpPut]
+		[HttpPut("update")]
 
 		public async Task<IActionResult> UpdateTask(Guid id, TasksDTO taskDto, CancellationToken cancellationToken)
 		{
@@ -173,7 +174,7 @@ namespace TaskSystem.API.Controllers
 
 		}
 
-		[HttpPut("complete task")]
+		[HttpPut("completed")]
 		public async Task<IActionResult> CompleteTask(Guid id, CancellationToken cancellationToken)
 		{
 			try
