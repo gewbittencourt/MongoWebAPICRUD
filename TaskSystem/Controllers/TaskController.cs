@@ -6,7 +6,6 @@ using TaskSystem.Service.Interface;
 
 namespace TaskSystem.API.Controllers
 {
-	//[Route("api/[controller]")]
 	[ApiController]
 	public class TaskController : ControllerBase
 	{
@@ -19,7 +18,9 @@ namespace TaskSystem.API.Controllers
 
 
 		// Utilizar verbos http para referenciar o que você quer fazer
-		[HttpPost("create")]
+		//Feito
+		[HttpPost]
+		[Route("api/v1/task/post")]
 		public async Task<IActionResult> Create(TasksDTO taskDto, CancellationToken cancellationToken)
 		{
 			try
@@ -54,7 +55,8 @@ namespace TaskSystem.API.Controllers
 			}
 		}
 
-		[HttpGet("get")]
+		[HttpGet]
+		[Route("api/v1/task/get")]
 		public async Task<IActionResult> GetAllTasks([FromQuery] Guid? id, CancellationToken cancellationToken)
 		{
 			try
@@ -101,7 +103,8 @@ namespace TaskSystem.API.Controllers
 
 
 
-		[HttpDelete("delete")]
+		[HttpDelete]
+		[Route("api/v1/task/delete")]
 		public async Task<IActionResult> DeleteTask(Guid id, CancellationToken cancellationToken)
 		{
 			try
@@ -139,7 +142,8 @@ namespace TaskSystem.API.Controllers
 		}
 
 
-		[HttpPut("update")]
+		[HttpPut]
+		[Route("api/v1/task")]
 
 		public async Task<IActionResult> UpdateTask(Guid id, TasksDTO taskDto, CancellationToken cancellationToken)
 		{
@@ -150,11 +154,11 @@ namespace TaskSystem.API.Controllers
 				{
 					return BadRequest(new
 					{
-						message = "Não foi possível completar a tarefa.",
+						message = "Não foi possível atualizar a tarefa.",
 						taskId = id
 					});
 				}
-				return Ok(new { message = "Tarefa completada com sucesso.", taskId = id });
+				return Ok(new { message = "Tarefa atualizada com sucesso.", taskId = id });
 			}
 			catch (ArgumentNullException ex)
 			{
@@ -176,12 +180,14 @@ namespace TaskSystem.API.Controllers
 
 		}
 
-		[HttpPut("completed")]
+
+		[HttpPut]
+		[Route("api/v1/task/complete")]
 		public async Task<IActionResult> CompleteTask(Guid id, CancellationToken cancellationToken)
 		{
 			try
 			{
-				var result = await _taskService.CompletedTask(id, cancellationToken);
+				var result = await _taskService.CompleteTask(id, cancellationToken);
 
 				if (!result)
 				{

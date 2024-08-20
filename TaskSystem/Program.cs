@@ -4,6 +4,7 @@ using TaskSystem.Service.Interface;
 using TaskSystem.Service.Services;
 using TaskSystem.Infrastructure.MongoDb.Repository;
 using TaskSystem.Infrastructure.MongoDb.Mapper;
+using TaskSystem.Domain.Entities;
 namespace TaskSystem
 
 {
@@ -28,10 +29,16 @@ namespace TaskSystem
 				.AddJsonFile("appsettings.Development.json")
 				.Build();
 
+
+
 			var mongoclient = new MongoClient(configuration.GetConnectionString("MongoDb"));
 
-
 			builder.Services.AddSingleton<IMongoClient>(mongoclient);
+			builder.Services.AddSingleton(sp =>
+			{
+				var database = mongoclient.GetDatabase("TaskSystem");
+				return database.GetCollection<Tasks>(nameof(Tasks));
+			});
 			builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 			builder.Services.AddScoped<ITaskService, TaskServices>();
 

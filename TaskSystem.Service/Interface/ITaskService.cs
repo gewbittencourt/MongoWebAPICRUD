@@ -20,7 +20,7 @@ namespace TaskSystem.Service.Interface
 
 		Task<bool> DeleteTask(Guid id, CancellationToken cancellationToken);
 
-		Task<bool> CompletedTask(Guid id, CancellationToken cancellationToken);
+		Task<bool> CompleteTask(Guid id, CancellationToken cancellationToken);
 
 
 	}

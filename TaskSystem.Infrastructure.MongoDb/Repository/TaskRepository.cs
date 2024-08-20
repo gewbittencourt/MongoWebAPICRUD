@@ -19,7 +19,7 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 		private readonly IMapper _mapper;
 
 
-		public TaskRepository(IMapper mapper, IMongoClient client)
+		/*public TaskRepository(IMapper mapper, IMongoClient client)
 		{
 			// O auto mapper está sendo utilizado para algo? o correto seria ele ser utilizado para mapear do objeto de domínio Task p/ o objeto TaskCollection
 			_mapper = mapper;
@@ -27,15 +27,24 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 			var database = client.GetDatabase("TaskSystem");
 			var collections = database.GetCollection<Tasks>(nameof(Tasks));
 			_tasks = collections;
+		}*/
+
+		//FEITO?
+
+		public TaskRepository(IMongoCollection<Tasks> tasks, IMapper mapper)
+		{
+			_tasks = tasks;
+			_mapper = mapper;
 		}
 
 
 
 		// retornar bool caso criado com sucesso
-		public async Task<Tasks> CreateNewTask(Tasks tasks, CancellationToken cancellationToken)
+		//Feito
+		public async Task<bool> CreateNewTask(Tasks tasks, CancellationToken cancellationToken)
 		{
 			await _tasks.InsertOneAsync(tasks, cancellationToken);
-			return tasks;
+			return true;
 
 		}
 
@@ -67,16 +76,15 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 
 
 		// Seu obj Task já tem um ID, não faz sentido ele receber o GUID como parametro
-		public async Task<bool> UpdateTask(Guid id, Tasks task, CancellationToken cancellationToken)
+		//Feito?
+		public async Task<bool> UpdateTask(Tasks task, CancellationToken cancellationToken)
 		{
 
-			var filter = Builders<Tasks>.Filter.Eq(x => x.Id, id);
-			var taskFromSearch = await _tasks.Find(filter).FirstOrDefaultAsync(cancellationToken);
+			var filter = Builders<Tasks>.Filter.Eq(x => x.Id, task.Id);
 
 			var update = Builders<Tasks>.Update
-				.Set(x => x.Title, string.IsNullOrEmpty(task.Title) ? taskFromSearch.Title : task.Title)
-				.Set(x => x.Description, string.IsNullOrEmpty(task.Description) ? taskFromSearch.Description : task.Description)
-				.Set(x => x.CreationDate, taskFromSearch.CreationDate);
+				.Set(x => x.Title, task.Title)
+				.Set(x => x.Description, task.Description);
 
 
 			var result = await _tasks.UpdateOneAsync(filter, update, null, cancellationToken);
@@ -86,9 +94,10 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 
 
 		//Complete Task
-		public async Task<bool> CompletedTask(Guid id, CancellationToken cancellationToken)
+		//Feito?
+		public async Task<bool> CompleteTask(Tasks task, CancellationToken cancellationToken)
 		{
-			var filter = Builders<Tasks>.Filter.Eq(x => x.Id, id);
+			var filter = Builders<Tasks>.Filter.Eq(x => x.Id, task.Id);
 			var update = Builders<Tasks>.Update
 				.Set(x => x.CompletationDate, DateTime.Now);
 

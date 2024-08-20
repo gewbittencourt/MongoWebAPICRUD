@@ -25,14 +25,16 @@ namespace TaskSystem.Service.Services
 
 		}
 
-		public async Task<bool> CompletedTask(Guid id, CancellationToken cancellationToken)
+		public async Task<bool> CompleteTask(Guid id, CancellationToken cancellationToken)
 		{
 			try
 			{
 				//Primeiro buscar pelo ID que recebeu, e encaminhar o objeto Task que retornou da base para a repository e o metodo complete tem a responsabilidade de altera-lo
-				var result = await _taskRepository.CompletedTask(id, cancellationToken);
+				//feito?
+				var task = await _taskRepository.GetDetailedTask(id, cancellationToken);
+				var complete = await _taskRepository.CompleteTask(task, cancellationToken);
 
-				if (!result)
+				if (!complete)
 				{
 					throw new InvalidOperationException("A tarefa não pode ser concluida.");
 				}
@@ -57,17 +59,18 @@ namespace TaskSystem.Service.Services
 			try
 			{
 				// Esse Mapeamento poderia estar dentro do automapper 
-				// var task = _mapper.Map<Tasks>(tasksDTO);
-				var task = new Tasks(title: tasksDTO.Title, description: tasksDTO.Description);
+				var task = _mapper.Map<Tasks>(tasksDTO);
+				//var task = new Tasks(title: tasksDTO.Title, description: tasksDTO.Description);
+
+
 				// Esse Mapeamento poderia estar dentro do automapper 
 				task.NewTask(Guid.NewGuid());
 
-				var addCheck = await _taskRepository.CreateNewTask(task, cancellationToken);
+				var addResult = await _taskRepository.CreateNewTask(task, cancellationToken);
 
-				if (addCheck != null)
+				if (addResult != null)
 				{
-					var result = _mapper.Map<TasksDTO>(addCheck);
-					return result;
+					return tasksDTO;
 				}
 
 				throw new InvalidOperationException("Falha na criação da tarefa. Retorno nulo.");
@@ -92,14 +95,15 @@ namespace TaskSystem.Service.Services
 			try
 			{
 				// usar nomes mais descritivo. Ex: deleted
-				var result = await _taskRepository.DeleteTask(id, cancellationToken);
+				//feito
+				var deletedTask = await _taskRepository.DeleteTask(id, cancellationToken);
 
-				if (!result)
+				if (!deletedTask)
 				{
 					throw new InvalidOperationException($"Falha ao deletar a tarefa com o ID {id}. A tarefa pode não existir.");
 				}
 
-				return result;
+				return deletedTask;
 			}
 			catch (ArgumentNullException ex)
 			{
@@ -121,14 +125,14 @@ namespace TaskSystem.Service.Services
 		{
 			try
 			{
-				var result = await _taskRepository.GetAllTasks(cancellationToken);
+				var resultTask = await _taskRepository.GetAllTasks(cancellationToken);
 
-				if (result == null)
+				if (resultTask == null)
 				{
 					throw new InvalidOperationException("Nenhuma tarefa foi encontrada.");
 				}
 
-				var returnList = _mapper.Map<IEnumerable<TasksDTO>>(result);
+				var returnList = _mapper.Map<IEnumerable<TasksDTO>>(resultTask);
 				return returnList;
 			}
 			catch (OperationCanceledException ex)
@@ -141,23 +145,22 @@ namespace TaskSystem.Service.Services
 			}
 		}
 
-
-
-
 		public async Task<TasksDTO> GetDetailedTask(Guid id, CancellationToken cancellationToken)
 		{
 			try
 			{
-				var result = await _taskRepository.GetDetailedTask(id, cancellationToken);
+				var resultTask = await _taskRepository.GetDetailedTask(id, cancellationToken);
 
-				if (result == null)
+				if (resultTask == null)
 				{
 					throw new KeyNotFoundException($"Tarefa com o ID {id} não foi encontrada.");
 				}
 
-				var returnObject = _mapper.Map<TasksDTO>(result);
-				return returnObject;
+				var returnDTO = _mapper.Map<TasksDTO>(resultTask);
+				return returnDTO;
 			}
+
+
 			catch (ArgumentNullException ex)
 			{
 				throw new ArgumentException("O ID da tarefa fornecido é inválido.", ex);
@@ -181,22 +184,32 @@ namespace TaskSystem.Service.Services
 		{
 			try
 			{
-
 				// O fluxo aqui poderia ficar:
 				// 1- get na base pelo ID
 				// 		a - Se encontrou: Atualizar o objeto utilizando o dto que recebeu
 				//			Encaminhar request para o repositoru
 				//		b - Se não encontrou: retornar erro
 
-				var tasks = _mapper.Map<Tasks>(tasksDTO);
-				var result = await _taskRepository.UpdateTask(id, tasks, cancellationToken);
+				//Feito?
 
-				if (!result)
+				var tasks = await _taskRepository.GetDetailedTask(id, cancellationToken);
+				if (tasks != null)
+				{
+					tasks.UpdateDescription(string.IsNullOrEmpty(tasksDTO.Title) ? tasks.Title : tasksDTO.Title);
+					tasks.UpdateTitle(string.IsNullOrEmpty(tasksDTO.Description) ? tasks.Description : tasksDTO.Description);
+				}
+				else
+				{
+					throw new InvalidOperationException($"Falha ao localizar a tarefa.");
+				}
+				var update = await _taskRepository.UpdateTask(tasks, cancellationToken);
+
+				if (!update)
 				{
 					throw new InvalidOperationException($"Falha ao atualizar a tarefa com o ID {id}. A tarefa pode não existir ou os dados não foram salvos corretamente.");
 				}
 
-				return result;
+				return update;
 			}
 			catch (ArgumentNullException ex)
 			{
