@@ -1,5 +1,7 @@
 namespace TaskSystem
 {
+
+	// WTF?
 	public class WeatherForecast
 	{
 		public DateOnly Date { get; set; }

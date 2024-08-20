@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskSystem.Infrastructure.Repository
 {
+	// FAZ SENTIDO ESSA CLASSE?
 	public class TaskRepository.MongoDB
 	{
 

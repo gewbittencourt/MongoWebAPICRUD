@@ -4,6 +4,8 @@ using MongoDB.Bson;
 namespace TaskSystem.Domain.Entities
 
 {
+	// Aqui vc está lidando com uma collection, o correto é a mesma ficar dentro do projeto mongoDb. Ex: Infra.MongoDb.Collection.TaskColection.cs
+	// Uma vez que vc mapeou sua colection, o correto é vc ter uma classe de domínio chamada Tasks 
 	public class Tasks
 	{
 		[BsonId]

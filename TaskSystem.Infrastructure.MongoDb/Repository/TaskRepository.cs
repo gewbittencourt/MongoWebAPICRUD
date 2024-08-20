@@ -21,7 +21,9 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 
 		public TaskRepository(IMapper mapper, IMongoClient client)
 		{
+			// O auto mapper está sendo utilizado para algo? o correto seria ele ser utilizado para mapear do objeto de domínio Task p/ o objeto TaskCollection
 			_mapper = mapper;
+			// essas configurações do client/collection você pode fazer na injeção de depência, podendo remover do contrutor da classe
 			var database = client.GetDatabase("TaskSystem");
 			var collections = database.GetCollection<Tasks>(nameof(Tasks));
 			_tasks = collections;
@@ -29,6 +31,7 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 
 
 
+		// retornar bool caso criado com sucesso
 		public async Task<Tasks> CreateNewTask(Tasks tasks, CancellationToken cancellationToken)
 		{
 			await _tasks.InsertOneAsync(tasks, cancellationToken);
@@ -53,7 +56,6 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 		}
 
 
-
 		public async Task<Tasks> GetDetailedTask(Guid id, CancellationToken cancellationToken)
 		{
 			var filter = Builders<Tasks>.Filter.Eq(x => x.Id, id);
@@ -64,9 +66,10 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 
 
 
-
+		// Seu obj Task já tem um ID, não faz sentido ele receber o GUID como parametro
 		public async Task<bool> UpdateTask(Guid id, Tasks task, CancellationToken cancellationToken)
 		{
+
 			var filter = Builders<Tasks>.Filter.Eq(x => x.Id, id);
 			var taskFromSearch = await _tasks.Find(filter).FirstOrDefaultAsync(cancellationToken);
 
@@ -81,6 +84,8 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 			return result.ModifiedCount == 1;
 		}
 
+
+		//Complete Task
 		public async Task<bool> CompletedTask(Guid id, CancellationToken cancellationToken)
 		{
 			var filter = Builders<Tasks>.Filter.Eq(x => x.Id, id);

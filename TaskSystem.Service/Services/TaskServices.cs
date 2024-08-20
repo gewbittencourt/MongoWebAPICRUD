@@ -29,6 +29,7 @@ namespace TaskSystem.Service.Services
 		{
 			try
 			{
+				//Primeiro buscar pelo ID que recebeu, e encaminhar o objeto Task que retornou da base para a repository e o metodo complete tem a responsabilidade de altera-lo
 				var result = await _taskRepository.CompletedTask(id, cancellationToken);
 
 				if (!result)
@@ -45,6 +46,7 @@ namespace TaskSystem.Service.Services
 			}
 			catch (Exception ex)
 			{
+				// EStudar sobre ILogger p/ tratar suas mensagens através da interface da lib https://learn.microsoft.com/pt-br/dotnet/api/microsoft.extensions.logging.ilogger?view=net-8.0
 				Console.WriteLine($"Um erro ocorreu: {ex.Message}");
 				return false;
 			}
@@ -54,7 +56,10 @@ namespace TaskSystem.Service.Services
 		{
 			try
 			{
+				// Esse Mapeamento poderia estar dentro do automapper 
+				// var task = _mapper.Map<Tasks>(tasksDTO);
 				var task = new Tasks(title: tasksDTO.Title, description: tasksDTO.Description);
+				// Esse Mapeamento poderia estar dentro do automapper 
 				task.NewTask(Guid.NewGuid());
 
 				var addCheck = await _taskRepository.CreateNewTask(task, cancellationToken);
@@ -86,6 +91,7 @@ namespace TaskSystem.Service.Services
 		{
 			try
 			{
+				// usar nomes mais descritivo. Ex: deleted
 				var result = await _taskRepository.DeleteTask(id, cancellationToken);
 
 				if (!result)
@@ -175,6 +181,13 @@ namespace TaskSystem.Service.Services
 		{
 			try
 			{
+
+				// O fluxo aqui poderia ficar:
+				// 1- get na base pelo ID
+				// 		a - Se encontrou: Atualizar o objeto utilizando o dto que recebeu
+				//			Encaminhar request para o repositoru
+				//		b - Se não encontrou: retornar erro
+
 				var tasks = _mapper.Map<Tasks>(tasksDTO);
 				var result = await _taskRepository.UpdateTask(id, tasks, cancellationToken);
 
@@ -202,10 +215,5 @@ namespace TaskSystem.Service.Services
 				throw new ApplicationException("Ocorreu um erro inesperado ao atualizar a tarefa.", ex);
 			}
 		}
-
-
-
-
-
 	}
 }
