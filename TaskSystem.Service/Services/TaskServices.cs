@@ -8,6 +8,7 @@ using TaskSystem.Service.Interface;
 using TaskSystem.Domain.Interfaces;
 using TaskSystem.Domain.Entities;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 
 namespace TaskSystem.Service.Services
@@ -16,12 +17,14 @@ namespace TaskSystem.Service.Services
 	{
 		private readonly ITaskRepository _taskRepository;
 		private readonly IMapper _mapper;
+		private readonly ILogger<TaskServices> _logger;
 
-		public TaskServices(ITaskRepository TaskRepository, IMapper mapper)
+		public TaskServices(ITaskRepository TaskRepository, IMapper mapper, ILogger<TaskServices> logger)
 		{
 
 			_taskRepository = TaskRepository;
 			_mapper = mapper;
+			_logger = logger;
 
 		}
 
@@ -29,27 +32,25 @@ namespace TaskSystem.Service.Services
 		{
 			try
 			{
-				//Primeiro buscar pelo ID que recebeu, e encaminhar o objeto Task que retornou da base para a repository e o metodo complete tem a responsabilidade de altera-lo
-				//feito?
 				var task = await _taskRepository.GetDetailedTask(id, cancellationToken);
 				var complete = await _taskRepository.CompleteTask(task, cancellationToken);
 
 				if (!complete)
 				{
-					throw new InvalidOperationException("A tarefa não pode ser concluida.");
+					_logger.LogError("A tarefa não pode ser concluída.");
+					throw new InvalidOperationException();
 				}
 
 				return true;
 			}
 			catch (OperationCanceledException ex)
 			{
-				Console.WriteLine($"A operação foi cancelada: {ex.Message}");
+				_logger.LogWarning(ex, "A operação foi cancelada.");
 				throw;
 			}
 			catch (Exception ex)
 			{
-				// EStudar sobre ILogger p/ tratar suas mensagens através da interface da lib https://learn.microsoft.com/pt-br/dotnet/api/microsoft.extensions.logging.ilogger?view=net-8.0
-				Console.WriteLine($"Um erro ocorreu: {ex.Message}");
+				_logger.LogError(ex, "Um erro ocorreu ao tentar completar a tarefa.");
 				return false;
 			}
 		}
@@ -73,19 +74,23 @@ namespace TaskSystem.Service.Services
 					return tasksDTO;
 				}
 
-				throw new InvalidOperationException("Falha na criação da tarefa. Retorno nulo.");
+				_logger.LogError("Falha na criação da tarefa. Retorno nulo.");
+				throw new InvalidOperationException();
 			}
 			catch (ArgumentNullException ex)
 			{
-				throw new ArgumentException("Um ou mais argumentos são nulos.", ex);
+				_logger.LogError(ex, "Um ou mais argumentos são nulos.");
+				throw;
 			}
 			catch (OperationCanceledException ex)
 			{
-				throw new OperationCanceledException("A criação da task foi cancelada.", ex);
+				_logger.LogWarning(ex, "A criação da task foi cancelada.");
+				throw;
 			}
 			catch (Exception ex)
 			{
-				throw new ApplicationException("Erro inesperado ao criar a task.", ex);
+				_logger.LogError(ex, "Erro inesperado ao criar a task.");
+				throw;
 			}
 		}
 
