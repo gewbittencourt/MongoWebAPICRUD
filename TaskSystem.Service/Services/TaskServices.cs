@@ -25,7 +25,6 @@ namespace TaskSystem.Service.Services
 			_taskRepository = TaskRepository;
 			_mapper = mapper;
 			_logger = logger;
-
 		}
 
 		public async Task<bool> CompleteTask(Guid id, CancellationToken cancellationToken)
@@ -38,7 +37,7 @@ namespace TaskSystem.Service.Services
 				if (!complete)
 				{
 					_logger.LogError("A tarefa não pode ser concluída.");
-					throw new InvalidOperationException();
+					throw new InvalidOperationException("A tarefa não pode ser concluída.");
 				}
 
 				return true;
@@ -60,12 +59,13 @@ namespace TaskSystem.Service.Services
 			try
 			{
 				// Esse Mapeamento poderia estar dentro do automapper 
+				//Feito?
 				var task = _mapper.Map<Tasks>(tasksDTO);
-				//var task = new Tasks(title: tasksDTO.Title, description: tasksDTO.Description);
 
 
 				// Esse Mapeamento poderia estar dentro do automapper 
-				task.NewTask(Guid.NewGuid());
+				//task.NewTask(Guid.NewGuid());
+				//Feito?
 
 				var addResult = await _taskRepository.CreateNewTask(task, cancellationToken);
 
@@ -75,7 +75,7 @@ namespace TaskSystem.Service.Services
 				}
 
 				_logger.LogError("Falha na criação da tarefa. Retorno nulo.");
-				throw new InvalidOperationException();
+				throw new InvalidOperationException("Falha na criação da tarefa. Retorno nulo.");
 			}
 			catch (ArgumentNullException ex)
 			{
@@ -105,6 +105,7 @@ namespace TaskSystem.Service.Services
 
 				if (!deletedTask)
 				{
+					_logger.LogError("Erro ao deletar a tarefa. Ela pode não existir");
 					throw new InvalidOperationException($"Falha ao deletar a tarefa com o ID {id}. A tarefa pode não existir.");
 				}
 
@@ -112,15 +113,18 @@ namespace TaskSystem.Service.Services
 			}
 			catch (ArgumentNullException ex)
 			{
-				throw new ArgumentException("O ID da tarefa fornecido é inválido.", ex);
+				_logger.LogError(ex, "Um ou mais elementos são nulos.");
+				throw;
 			}
 			catch (OperationCanceledException ex)
 			{
-				throw new OperationCanceledException("A exclusão da tarefa foi cancelada.", ex);
+				_logger.LogWarning(ex, "A deleção da task foi cancelada.");
+				throw;
 			}
 			catch (Exception ex)
 			{
-				throw new ApplicationException("Ocorreu um erro inesperado durante a exclusão da tarefa.", ex);
+				_logger.LogError(ex, "Erro inesperado ao deletar a task.");
+				throw;
 			}
 		}
 
@@ -134,6 +138,7 @@ namespace TaskSystem.Service.Services
 
 				if (resultTask == null)
 				{
+					_logger.LogWarning("Nenhuma tarefa encontrada!");
 					throw new InvalidOperationException("Nenhuma tarefa foi encontrada.");
 				}
 
@@ -142,10 +147,12 @@ namespace TaskSystem.Service.Services
 			}
 			catch (OperationCanceledException ex)
 			{
+				_logger.LogError("A operação de obtenção de tarefas foi cancelada.");
 				throw new OperationCanceledException("A operação de obtenção de tarefas foi cancelada.", ex);
 			}
 			catch (Exception ex)
 			{
+				_logger.LogError("Ocorreu um erro inesperado ao obter a lista de tarefas.");
 				throw new ApplicationException("Ocorreu um erro inesperado ao obter a lista de tarefas.", ex);
 			}
 		}
@@ -158,6 +165,7 @@ namespace TaskSystem.Service.Services
 
 				if (resultTask == null)
 				{
+					_logger.LogWarning("A tarefa não foi encontrada.");
 					throw new KeyNotFoundException($"Tarefa com o ID {id} não foi encontrada.");
 				}
 
@@ -168,18 +176,17 @@ namespace TaskSystem.Service.Services
 
 			catch (ArgumentNullException ex)
 			{
+				_logger.LogError("O ID da tarefa fornecido é inválido.");
 				throw new ArgumentException("O ID da tarefa fornecido é inválido.", ex);
 			}
 			catch (OperationCanceledException ex)
 			{
+				_logger.LogError("A operação de obtenção dos detalhes da tarefa foi cancelada");
 				throw new OperationCanceledException("A operação de obtenção dos detalhes da tarefa foi cancelada.", ex);
-			}
-			catch (KeyNotFoundException ex)
-			{
-				throw new KeyNotFoundException(ex.Message, ex);
 			}
 			catch (Exception ex)
 			{
+				_logger.LogError("Ocorreu um erro inesperado ao obter os detalhes da tarefa.");
 				throw new ApplicationException("Ocorreu um erro inesperado ao obter os detalhes da tarefa.", ex);
 			}
 		}
@@ -205,12 +212,15 @@ namespace TaskSystem.Service.Services
 				}
 				else
 				{
+					_logger.LogWarning("Falha ao localizar a tarefa.");
 					throw new InvalidOperationException($"Falha ao localizar a tarefa.");
 				}
+
 				var update = await _taskRepository.UpdateTask(tasks, cancellationToken);
 
 				if (!update)
 				{
+					_logger.LogError("Falha ao atualizar a tarefa. A tarefa pode não existir ou os dados não foram salvos corretamente.");
 					throw new InvalidOperationException($"Falha ao atualizar a tarefa com o ID {id}. A tarefa pode não existir ou os dados não foram salvos corretamente.");
 				}
 
@@ -218,18 +228,17 @@ namespace TaskSystem.Service.Services
 			}
 			catch (ArgumentNullException ex)
 			{
+				_logger.LogError("O ID ou os dados da tarefa fornecidos são inválidos.");
 				throw new ArgumentException("O ID ou os dados da tarefa fornecidos são inválidos.", ex);
 			}
 			catch (OperationCanceledException ex)
 			{
+				_logger.LogError("A operação de atualização da tarefa foi cancelada.");
 				throw new OperationCanceledException("A operação de atualização da tarefa foi cancelada.", ex);
-			}
-			catch (InvalidOperationException ex)
-			{
-				throw new InvalidOperationException(ex.Message, ex);
 			}
 			catch (Exception ex)
 			{
+				_logger.LogError("Ocorreu um erro inesperado ao atualizar a tarefa.");
 				throw new ApplicationException("Ocorreu um erro inesperado ao atualizar a tarefa.", ex);
 			}
 		}

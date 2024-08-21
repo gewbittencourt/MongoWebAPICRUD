@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 using TaskSystem.Domain.Entities;
 using TaskSystem.Service.DTO;
 
-namespace TaskSystem.Infrastructure.MongoDb.Mapper
+namespace TaskSystem.Service.Mapper
 {
-	public class MappingClass : Profile
+	public class MappingDTO : Profile
 	{
 
-		public MappingClass()
+		public MappingDTO()
 		{
 
-			CreateMap<Tasks, TasksDTO>().ReverseMap();
+			CreateMap<Tasks, TasksDTO>();
+
+			CreateMap<TasksDTO, Tasks>().AfterMap((src, dest) => dest.NewTask(Guid.NewGuid()));
 
 
 		}

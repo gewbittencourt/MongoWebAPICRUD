@@ -118,7 +118,7 @@ namespace TaskSystem.Tests
 		{
 			//Arrange
 			var id = new Guid();
-			_mockService.Setup(service => service.CompletedTask(id, It.IsAny<CancellationToken>())).ReturnsAsync(true);
+			_mockService.Setup(service => service.CompleteTask(id, It.IsAny<CancellationToken>())).ReturnsAsync(true);
 
 
 			//Act

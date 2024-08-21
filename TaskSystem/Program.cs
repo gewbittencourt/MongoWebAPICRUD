@@ -3,8 +3,9 @@ using TaskSystem.Domain.Interfaces;
 using TaskSystem.Service.Interface;
 using TaskSystem.Service.Services;
 using TaskSystem.Infrastructure.MongoDb.Repository;
-using TaskSystem.Infrastructure.MongoDb.Mapper;
 using TaskSystem.Domain.Entities;
+using TaskSystem.Infrastructure.MongoDb.Collection;
+using TaskSystem.Service.Mapper;
 namespace TaskSystem
 
 {
@@ -20,7 +21,7 @@ namespace TaskSystem
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
-			builder.Services.AddAutoMapper(typeof(MappingClass));
+			builder.Services.AddAutoMapper(typeof(MappingDTO));
 
 
 			IConfiguration configuration = new ConfigurationBuilder()
@@ -37,8 +38,9 @@ namespace TaskSystem
 			builder.Services.AddSingleton(sp =>
 			{
 				var database = mongoclient.GetDatabase("TaskSystem");
-				return database.GetCollection<Tasks>(nameof(Tasks));
+				return database.GetCollection<Tasks>(nameof(TaskCollection));
 			});
+
 			builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 			builder.Services.AddScoped<ITaskService, TaskServices>();
 

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskSystem.Domain.Entities;
 using TaskSystem.Domain.Interfaces;
+using TaskSystem.Infrastructure.MongoDb.Collection;
 using TaskSystem.Service.DTO;
 
 namespace TaskSystem.Infrastructure.MongoDb.Repository

@@ -7,9 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskSystem.Domain.Entities;
 using TaskSystem.Domain.Interfaces;
-using TaskSystem.Infrastructure.MongoDb.Mapper;
+using TaskSystem.Service.Mapper;
 using TaskSystem.Service.DTO;
 using TaskSystem.Service.Services;
+using Microsoft.Extensions.Logging;
 
 namespace TaskSystem.Tests.Service.Test
 {
@@ -19,12 +20,14 @@ namespace TaskSystem.Tests.Service.Test
 		private readonly TaskServices _taskServices;
 		private readonly Mock<ITaskRepository> _mockTaskRepository;
 		private readonly Mock<IMapper> _mockMapper;
+		private readonly Mock<ILogger<TaskServices>> _mockLogger;
 
 		public TaskServiceTest()
 		{
 			_mockTaskRepository = new Mock<ITaskRepository>();
 			_mockMapper = new Mock<IMapper>();
-			_taskServices = new TaskServices(_mockTaskRepository.Object, _mockMapper.Object);
+			_mockLogger = new Mock<ILogger<TaskServices>>();
+			_taskServices = new TaskServices(_mockTaskRepository.Object, _mockMapper.Object, _mockLogger.Object);
 		}
 
 		[Fact]
@@ -32,10 +35,10 @@ namespace TaskSystem.Tests.Service.Test
 		{
 			//Arrange
 			var id = Guid.NewGuid();
-			_mockTaskRepository.Setup(repository => repository.CompletedTask(id, It.IsAny<CancellationToken>())).ReturnsAsync(true);
+			_mockTaskRepository.Setup(repository => repository.CompleteTask(id, It.IsAny<CancellationToken>())).ReturnsAsync(true);
 
 			//Act
-			var result = await _taskServices.CompletedTask(id, It.IsAny<CancellationToken>());
+			var result = await _taskServices.CompleteTask(id, It.IsAny<CancellationToken>());
 
 
 			//Asserts

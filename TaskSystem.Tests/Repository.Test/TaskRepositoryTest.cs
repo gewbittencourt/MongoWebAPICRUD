@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskSystem.Domain.Entities;
+using TaskSystem.Infrastructure.MongoDb.Collection;
 using TaskSystem.Infrastructure.MongoDb.Repository;
 using TaskSystem.Service.DTO;
 using TaskSystem.Service.Interface;
@@ -25,7 +26,6 @@ namespace TaskSystem.Tests.Repository.Test
 
 		public TaskRepositoryTest()
 		{
-			// Inicializa os mocks
 			_mockMongoClient = new Mock<IMongoClient>();
 			_mockMapper = new Mock<IMapper>();
 			_mockCursor = new Mock<IAsyncCursor<Tasks>>();
@@ -33,18 +33,18 @@ namespace TaskSystem.Tests.Repository.Test
 			_mockMongoCollection = new Mock<IMongoCollection<Tasks>>();
 
 			// Configurações para retornar a coleção mockada
-			_mockMongoClient.Setup(client => client.GetDatabase(It.IsAny<string>(), null))
+			_mockMongoClient.Setup(client => client.GetDatabase("TaskSystem", null))
 							.Returns(_mockDatabase.Object);
-			_mockDatabase.Setup(db => db.GetCollection<Tasks>(It.IsAny<string>(), null))
+			_mockDatabase.Setup(db => db.GetCollection<Tasks>(nameof(TaskCollection), null))
 						 .Returns(_mockMongoCollection.Object);
 
 			// Inicializa o TaskRepository com os mocks
-			_taskRepository = new TaskRepository(_mockMapper.Object, _mockMongoClient.Object);
+			_taskRepository = new TaskRepository(_mockMongoCollection.Object, _mockMapper.Object);
 		}
 
 
 		[Fact]
-		public async Task CreateNewTask_ReturnTask_WhenSuccessfull()
+		public async Task CreateNewTask_ReturnBool_WhenSuccessfull()
 		{
 			//Arrange
 			var task = new Tasks(title: "title", description: "description");
@@ -55,8 +55,7 @@ namespace TaskSystem.Tests.Repository.Test
 			var result = await _taskRepository.CreateNewTask(task, It.IsAny<CancellationToken>());
 
 			//Asserts
-			Assert.IsType<Tasks>(result);
-			Assert.Equal(task.Title, result.Title);
+			Assert.True(result);
 		}
 
 		[Fact]
@@ -165,7 +164,7 @@ namespace TaskSystem.Tests.Repository.Test
 
 
 			//Act
-			var result = await _taskRepository.UpdateTask(taskId,updatedTask, It.IsAny<CancellationToken>());
+			var result = await _taskRepository.UpdateTask(updatedTask, It.IsAny<CancellationToken>());
 
 			//Asserts
 			Assert.NotNull(result);
@@ -204,7 +203,7 @@ namespace TaskSystem.Tests.Repository.Test
 
 
 			//Act
-			var result = await _taskRepository.CompletedTask(taskId, It.IsAny<CancellationToken>());
+			var result = await _taskRepository.CompleteTask(task, It.IsAny<CancellationToken>());
 
 
 			//Assert
