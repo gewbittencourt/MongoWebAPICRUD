@@ -20,7 +20,7 @@ namespace TaskSystem.API.Controllers
 		// Utilizar verbos http para referenciar o que você quer fazer
 		//Feito
 		[HttpPost]
-		[Route("api/v1/task/post")]
+		[Route("api/v1/task")]
 		public async Task<IActionResult> Create(TasksDTO taskDto, CancellationToken cancellationToken)
 		{
 			try
@@ -56,7 +56,7 @@ namespace TaskSystem.API.Controllers
 		}
 
 		[HttpGet]
-		[Route("api/v1/task/get")]
+		[Route("api/v1/task")]
 		public async Task<IActionResult> GetAllTasks([FromQuery] Guid? id, CancellationToken cancellationToken)
 		{
 			try
@@ -104,7 +104,7 @@ namespace TaskSystem.API.Controllers
 
 
 		[HttpDelete]
-		[Route("api/v1/task/delete")]
+		[Route("api/v1/task")]
 		public async Task<IActionResult> DeleteTask(Guid id, CancellationToken cancellationToken)
 		{
 			try

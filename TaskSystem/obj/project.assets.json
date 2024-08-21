@@ -1548,19 +1548,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ace\\.nuget\\packages\\": {}
+    "C:\\Users\\gewbi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem\\TaskSystem.API.csproj",
+      "projectUniqueName": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem\\TaskSystem.API.csproj",
       "projectName": "TaskSystem.API",
-      "projectPath": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem\\TaskSystem.API.csproj",
-      "packagesPath": "C:\\Users\\ace\\.nuget\\packages\\",
-      "outputPath": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem\\obj\\",
+      "projectPath": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem\\TaskSystem.API.csproj",
+      "packagesPath": "C:\\Users\\gewbi\\.nuget\\packages\\",
+      "outputPath": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ace\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gewbi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1575,14 +1575,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Domain\\TaskSystem.Domain.csproj": {
-              "projectPath": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Domain\\TaskSystem.Domain.csproj"
+            "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Domain\\TaskSystem.Domain.csproj": {
+              "projectPath": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Domain\\TaskSystem.Domain.csproj"
             },
-            "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\TaskSystem.Infrastructure.MongoDb.csproj": {
-              "projectPath": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\TaskSystem.Infrastructure.MongoDb.csproj"
+            "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\TaskSystem.Infrastructure.MongoDb.csproj": {
+              "projectPath": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\TaskSystem.Infrastructure.MongoDb.csproj"
             },
-            "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\TaskSystem.Service.csproj": {
-              "projectPath": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\TaskSystem.Service.csproj"
+            "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Service\\TaskSystem.Service.csproj": {
+              "projectPath": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Service\\TaskSystem.Service.csproj"
             }
           }
         }
