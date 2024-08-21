@@ -11,21 +11,21 @@ namespace TaskSystem.Infrastructure.MongoDb.Collection
 	public class TaskCollection
 	{
 		[BsonId]
-		[BsonRepresentation(BsonType.String)]
-		[BsonElement("ID")]
-		public Guid Id { get; private set; }
+		[BsonIgnoreIfDefault]
+		public ObjectId Id { get; set; }
 
 		[BsonElement("TaskTitle")]
-		public string Title { get; private set; }
+		public string Title { get; set; }
 
 		[BsonElement("TaskDescription")]
-		public string Description { get; private set; }
+		public string Description { get; set; }
 
 		[BsonElement("CreationDate")]
-		public DateTime CreationDate { get; private set; }
+		public DateTime CreationDate { get; set; }
 
 
 		[BsonElement("CompletationDate")]
-		public DateTime CompletationDate { get; private set; }
+		public DateTime CompletationDate { get; set; }
 	}
+
 }
