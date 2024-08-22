@@ -1,12 +1,13 @@
 using MongoDB.Driver;
 using TaskSystem.Domain.Interfaces;
-using TaskSystem.Service.Interface;
-using TaskSystem.Service.Services;
 using TaskSystem.Infrastructure.MongoDb.Repository;
 using TaskSystem.Domain.Entities;
 using TaskSystem.Infrastructure.MongoDb.Collection;
-using TaskSystem.Service.Mapper;
 using Microsoft.AspNetCore.Mvc;
+using TaskSystem.Infrastructure.MongoDb.Mapper;
+using TaskSystem.Application.Interface;
+using TaskSystem.Application.Service;
+using TaskSystem.Application.Mapping;
 namespace TaskSystem
 
 {
@@ -29,7 +30,8 @@ namespace TaskSystem
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
-			builder.Services.AddAutoMapper(typeof(MappingDTO));
+			builder.Services.AddAutoMapper(typeof(MappingEntitie));
+			builder.Services.AddAutoMapper(typeof(MappingCollection));
 
 
 			IConfiguration configuration = new ConfigurationBuilder()
@@ -46,7 +48,7 @@ namespace TaskSystem
 			builder.Services.AddSingleton(sp =>
 			{
 				var database = mongoclient.GetDatabase(TaskCollection.CollectionName);
-				return database.GetCollection<Tasks>(nameof(TaskCollection));
+				return database.GetCollection<TaskCollection>(nameof(TaskCollection));
 			});
 
 			builder.Services.AddScoped<ITaskRepository, TaskRepository>();

@@ -37,10 +37,12 @@ namespace TaskSystem.Domain.Entities
 
 		public void Complete() => CompletationDate = DateTime.Now;
 
-		public void UpdateTitle(string title) => Title = title;
+		public void UpdateTask(string title, string description)
+		{
+			Title = title;
+			Description = description;
 
-
-		public void UpdateDescription(string description) => Description = description;
+		}
 
 	}
 }

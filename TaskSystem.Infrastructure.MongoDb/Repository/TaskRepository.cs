@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using TaskSystem.Domain.Entities;
 using TaskSystem.Domain.Interfaces;
 using TaskSystem.Infrastructure.MongoDb.Collection;
-using TaskSystem.Service.DTO;
 
 namespace TaskSystem.Infrastructure.MongoDb.Repository
 {
@@ -20,18 +19,6 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 		private readonly IMapper _mapper;
 
 
-		/*public TaskRepository(IMapper mapper, IMongoClient client)
-		{
-			// O auto mapper está sendo utilizado para algo? o correto seria ele ser utilizado para mapear do objeto de domínio Task p/ o objeto TaskCollection
-			_mapper = mapper;
-			// essas configurações do client/collection você pode fazer na injeção de depência, podendo remover do contrutor da classe
-			var database = client.GetDatabase("TaskSystem");
-			var collections = database.GetCollection<Tasks>(nameof(Tasks));
-			_tasks = collections;
-		}*/
-
-		//FEITO?
-
 		public TaskRepository(IMongoCollection<TaskCollection> tasks, IMapper mapper)
 		{
 			_tasks = tasks;
@@ -39,18 +26,16 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 		}
 
 
-
-		// retornar bool caso criado com sucesso
-		//Feito
 		public async Task CreateNewTask(Tasks tasks, CancellationToken cancellationToken)
 		{
-			await _tasks.InsertOneAsync(tasks,new InsertOneOptions(), cancellationToken);
+			var taskCollection = _mapper.Map<TaskCollection>(tasks);
+			await _tasks.InsertOneAsync(taskCollection, new InsertOneOptions(), cancellationToken);
 
 		}
 
 		public async Task<bool> DeleteTask(Guid id, CancellationToken cancellationToken)
 		{
-			var filter = Builders<Tasks>.Filter.Eq(x => x.Id, id);
+			var filter = Builders<TaskCollection>.Filter.Eq(x => x.TaskID, id);
 			var result = await _tasks.DeleteOneAsync(filter, cancellationToken);
 
 			return result.DeletedCount == 1;
@@ -60,29 +45,24 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 
 		public async Task<IEnumerable<Tasks>> GetAllTasks(CancellationToken cancellationToken)
 		{
-			var tasks = await _tasks.Find(_ => true).ToListAsync(cancellationToken);
-			return tasks;
+			var taskCollection = await _tasks.Find(_ => true).ToListAsync(cancellationToken);
+			return _mapper.Map<IEnumerable<Tasks>>(taskCollection);
 		}
 
 
 		public async Task<Tasks> GetDetailedTask(Guid id, CancellationToken cancellationToken)
 		{
-			var filter = Builders<Tasks>.Filter.Eq(x => x.Id, id);
-			var task = await _tasks.Find(filter).FirstOrDefaultAsync(cancellationToken);
-			return task;
+			var filter = Builders<TaskCollection>.Filter.Eq(x => x.TaskID, id);
+			var taskCollection = await _tasks.Find(filter).FirstOrDefaultAsync(cancellationToken);
+			return _mapper.Map<Tasks>(taskCollection);
 		}
 
 
-
-
-		// Seu obj Task já tem um ID, não faz sentido ele receber o GUID como parametro
-		//Feito?
 		public async Task<bool> UpdateTask(Tasks task, CancellationToken cancellationToken)
 		{
+			var filter = Builders<TaskCollection>.Filter.Eq(x => x.TaskID, task.Id);
 
-			var filter = Builders<Tasks>.Filter.Eq(x => x.Id, task.Id);
-
-			var update = Builders<Tasks>.Update
+			var update = Builders<TaskCollection>.Update
 				.Set(x => x.Title, task.Title)
 				.Set(x => x.Description, task.Description)
 				.Set(x => x.CompletationDate, task.CompletationDate)

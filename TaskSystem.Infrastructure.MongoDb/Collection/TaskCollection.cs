@@ -16,6 +16,9 @@ namespace TaskSystem.Infrastructure.MongoDb.Collection
 		[BsonIgnoreIfDefault]
 		public ObjectId Id { get; set; }
 
+		[BsonElement("TaskId")]
+		public Guid TaskID { get; set; }
+
 		[BsonElement("TaskTitle")]
 		public string Title { get; set; }
 

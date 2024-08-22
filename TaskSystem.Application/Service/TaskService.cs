@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaskSystem.Service.DTO;
-using TaskSystem.Service.Interface;
-using TaskSystem.Domain.Interfaces;
-using TaskSystem.Domain.Entities;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
+using TaskSystem.Application.Input;
+using TaskSystem.Application.Interface;
+using TaskSystem.Application.Output;
+using TaskSystem.Domain.Entities;
+using TaskSystem.Domain.Interfaces;
 
-
-namespace TaskSystem.Service.Services
+namespace TaskSystem.Application.Service
 {
 	public class TaskServices : ITaskService
 	{
@@ -33,8 +28,7 @@ namespace TaskSystem.Service.Services
 			{
 				var task = await _taskRepository.GetDetailedTask(id, cancellationToken);
 				task.Complete();
-				//var complete = await _taskRepository.CompleteTask(task, cancellationToken);
-				var updated = await _taskRepository.UpdateTask(task,cancellationToken);
+				var updated = await _taskRepository.UpdateTask(task, cancellationToken);
 
 				if (!updated)
 				{
@@ -56,11 +50,11 @@ namespace TaskSystem.Service.Services
 			}
 		}
 
-		public async Task<Guid> CreateNewTask(TasksDTO tasksDTO, CancellationToken cancellationToken)
+		public async Task<Guid> CreateNewTask(CreateTaskInput createTask, CancellationToken cancellationToken)
 		{
 			try
 			{
-				var task = _mapper.Map<Tasks>(tasksDTO);
+				var task = _mapper.Map<Tasks>(createTask);
 
 				await _taskRepository.CreateNewTask(task, cancellationToken);
 
@@ -89,8 +83,6 @@ namespace TaskSystem.Service.Services
 		{
 			try
 			{
-				// usar nomes mais descritivo. Ex: deleted
-				//feito
 				var deletedTask = await _taskRepository.DeleteTask(id, cancellationToken);
 
 				if (!deletedTask)
@@ -120,7 +112,7 @@ namespace TaskSystem.Service.Services
 
 
 
-		public async Task<IEnumerable<TasksDTO>> GetAllTasks(CancellationToken cancellationToken)
+		public async Task<IEnumerable<GetTaskOutput>> GetAllTasks(CancellationToken cancellationToken)
 		{
 			try
 			{
@@ -132,7 +124,7 @@ namespace TaskSystem.Service.Services
 					throw new InvalidOperationException("Nenhuma tarefa foi encontrada.");
 				}
 
-				var returnList = _mapper.Map<IEnumerable<TasksDTO>>(resultTask);
+				var returnList = _mapper.Map<IEnumerable<GetTaskOutput>>(resultTask);
 				return returnList;
 			}
 			catch (OperationCanceledException ex)
@@ -147,7 +139,7 @@ namespace TaskSystem.Service.Services
 			}
 		}
 
-		public async Task<TasksDTO> GetDetailedTask(Guid id, CancellationToken cancellationToken)
+		public async Task<GetTaskOutput> GetDetailedTask(Guid id, CancellationToken cancellationToken)
 		{
 			try
 			{
@@ -159,8 +151,8 @@ namespace TaskSystem.Service.Services
 					throw new KeyNotFoundException($"Tarefa com o ID {id} não foi encontrada.");
 				}
 
-				var returnDTO = _mapper.Map<TasksDTO>(resultTask);
-				return returnDTO;
+				var returnOutput = _mapper.Map<GetTaskOutput>(resultTask);
+				return returnOutput;
 			}
 
 
@@ -182,26 +174,15 @@ namespace TaskSystem.Service.Services
 		}
 
 
-		public async Task<bool> UpdateTask(Guid id, TasksDTO tasksDTO, CancellationToken cancellationToken)
+		public async Task<bool> UpdateTask(Guid id, CreateTaskInput taskInput, CancellationToken cancellationToken)
 		{
 			try
 			{
-				// O fluxo aqui poderia ficar:
-				// 1- get na base pelo ID
-				// 		a - Se encontrou: Atualizar o objeto utilizando o dto que recebeu
-				//			Encaminhar request para o repositoru
-				//		b - Se não encontrou: retornar erro
-
-				//Feito?
-
 				var tasks = await _taskRepository.GetDetailedTask(id, cancellationToken);
 				if (tasks != null)
 				{
-					tasks.UpdateDescription(string.IsNullOrEmpty(tasksDTO.Title) ? tasks.Title : tasksDTO.Title);
-					tasks.UpdateTitle(string.IsNullOrEmpty(tasksDTO.Description) ? tasks.Description : tasksDTO.Description);
+					tasks.UpdateTask(string.IsNullOrEmpty(taskInput.Title) ? tasks.Title : taskInput.Title, string.IsNullOrEmpty(taskInput.Description) ? tasks.Description : taskInput.Description);
 				}
-
-
 				else
 				{
 					_logger.LogWarning("Falha ao localizar a tarefa.");
@@ -236,3 +217,5 @@ namespace TaskSystem.Service.Services
 		}
 	}
 }
+
+

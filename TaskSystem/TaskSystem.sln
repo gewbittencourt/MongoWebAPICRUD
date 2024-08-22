@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskSystem.Service", "..\Ta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskSystem.Infrastructure.MongoDb", "..\TaskSystem.Infrastructure.MongoDb\TaskSystem.Infrastructure.MongoDb.csproj", "{D59103A9-5175-4F26-9529-2A2E27C2E933}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskSystem.Tests", "..\TaskSystem.Tests\TaskSystem.Tests.csproj", "{8C73D217-0031-47BF-9189-03AE03B3D9B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskSystem.Tests", "..\TaskSystem.Tests\TaskSystem.Tests.csproj", "{8C73D217-0031-47BF-9189-03AE03B3D9B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskSystem.Application", "..\TaskSystem.Application\TaskSystem.Application.csproj", "{03C43CED-6DBB-478E-AB9C-FCB1E47F71A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{8C73D217-0031-47BF-9189-03AE03B3D9B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C73D217-0031-47BF-9189-03AE03B3D9B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C73D217-0031-47BF-9189-03AE03B3D9B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03C43CED-6DBB-478E-AB9C-FCB1E47F71A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03C43CED-6DBB-478E-AB9C-FCB1E47F71A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03C43CED-6DBB-478E-AB9C-FCB1E47F71A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03C43CED-6DBB-478E-AB9C-FCB1E47F71A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,9 +11,9 @@
           "Microsoft.AspNetCore.Mvc.Versioning": "5.1.0",
           "MongoDB.Driver": "2.28.0",
           "Swashbuckle.AspNetCore": "6.4.0",
+          "TaskSystem.Application": "1.0.0",
           "TaskSystem.Domain": "1.0.0",
-          "TaskSystem.Infrastructure.MongoDb": "1.0.0",
-          "TaskSystem.Service": "1.0.0"
+          "TaskSystem.Infrastructure.MongoDb": "1.0.0"
         },
         "runtime": {
           "TaskSystem.API.dll": {}
@@ -262,6 +262,15 @@
           }
         }
       },
+      "TaskSystem.Application/1.0.0": {
+        "dependencies": {
+          "TaskSystem.Domain": "1.0.0",
+          "TaskSystem.Infrastructure.MongoDb": "1.0.0"
+        },
+        "runtime": {
+          "TaskSystem.Application.dll": {}
+        }
+      },
       "TaskSystem.Domain/1.0.0": {
         "dependencies": {
           "MongoDB.Driver": "2.28.0"
@@ -279,16 +288,6 @@
         },
         "runtime": {
           "TaskSystem.Infrastructure.MongoDb.dll": {}
-        }
-      },
-      "TaskSystem.Service/1.0.0": {
-        "dependencies": {
-          "AutoMapper": "13.0.1",
-          "MongoDB.Driver": "2.28.0",
-          "TaskSystem.Domain": "1.0.0"
-        },
-        "runtime": {
-          "TaskSystem.Service.dll": {}
         }
       }
     }
@@ -523,17 +522,17 @@
       "path": "zstdsharp.port/0.7.3",
       "hashPath": "zstdsharp.port.0.7.3.nupkg.sha512"
     },
+    "TaskSystem.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "TaskSystem.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "TaskSystem.Infrastructure.MongoDb/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "TaskSystem.Service/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
