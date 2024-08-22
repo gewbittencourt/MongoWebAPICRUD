@@ -26,10 +26,16 @@ namespace TaskSystem.Domain.Entities
 		{
 			Title = title;
 			Description = description;
-			CreationDate = DateTime.Now;
+
 		}
 
-		public void NewTask(Guid id) => Id = id;
+		public void NewTask()
+		{
+			Id = Guid.NewGuid();
+			CreationDate = DateTime.Now;
+		} 
+
+		public void Complete() => CompletationDate = DateTime.Now;
 
 		public void UpdateTitle(string title) => Title = title;
 

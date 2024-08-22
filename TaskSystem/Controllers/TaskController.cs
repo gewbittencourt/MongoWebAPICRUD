@@ -29,6 +29,13 @@ namespace TaskSystem.API.Controllers
 		//NÃO PRECISA TER EXCEPTION NA CONTROLLER. ELA DEVE SER BURRA.
 		public async Task<IActionResult> Create([FromBody] TasksDTO taskDto, CancellationToken cancellationToken)
 		{
+			// var meu DTOouINPUT = _mapper.Map<TaskDto>(request)
+			// var result = await _taskService.CreateNewTask(DTOouINPUT, cancellationToken);
+			// if (result not is valido?) return MEUMETODOQUECRIAUMACTIONRESULT_DE_ERROR(RESULT)
+			// return MEUMETODOQUECRIAUMACTIONRESULT_DE_SUCESSO(RESULT)
+
+
+
 			try
 			{
 				var result = await _taskService.CreateNewTask(taskDto, cancellationToken);

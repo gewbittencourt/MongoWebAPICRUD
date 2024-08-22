@@ -17,8 +17,6 @@ namespace TaskSystem.Service.Mapper
 
 			CreateMap<Tasks, TasksDTO>();
 
-
-			//por conta disso deveria estar na camada de domain?
 			CreateMap<TasksDTO, Tasks>().AfterMap((src, dest) => dest.NewTask());
 
 

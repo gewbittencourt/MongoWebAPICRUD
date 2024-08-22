@@ -32,9 +32,11 @@ namespace TaskSystem.Service.Services
 			try
 			{
 				var task = await _taskRepository.GetDetailedTask(id, cancellationToken);
-				var complete = await _taskRepository.CompleteTask(task, cancellationToken);
+				task.Complete();
+				//var complete = await _taskRepository.CompleteTask(task, cancellationToken);
+				var updated = await _taskRepository.UpdateTask(task,cancellationToken);
 
-				if (!complete)
+				if (!updated)
 				{
 					_logger.LogError("A tarefa não pode ser concluída.");
 					throw new InvalidOperationException("A tarefa não pode ser concluída.");
@@ -198,6 +200,8 @@ namespace TaskSystem.Service.Services
 					tasks.UpdateDescription(string.IsNullOrEmpty(tasksDTO.Title) ? tasks.Title : tasksDTO.Title);
 					tasks.UpdateTitle(string.IsNullOrEmpty(tasksDTO.Description) ? tasks.Description : tasksDTO.Description);
 				}
+
+
 				else
 				{
 					_logger.LogWarning("Falha ao localizar a tarefa.");
