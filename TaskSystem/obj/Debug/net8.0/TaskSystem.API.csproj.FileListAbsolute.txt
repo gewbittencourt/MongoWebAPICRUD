@@ -208,3 +208,4 @@ C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\obj\Debug\net8.0\refint\TaskSystem
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\obj\Debug\net8.0\TaskSystem.API.pdb
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\obj\Debug\net8.0\TaskSystem.API.genruntimeconfig.cache
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\obj\Debug\net8.0\ref\TaskSystem.API.dll
+C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Versioning.dll

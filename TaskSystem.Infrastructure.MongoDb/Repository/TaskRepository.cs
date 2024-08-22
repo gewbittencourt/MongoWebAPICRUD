@@ -16,7 +16,7 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 	public class TaskRepository : ITaskRepository
 	{
 
-		private readonly IMongoCollection<Tasks> _tasks;
+		private readonly IMongoCollection<TaskCollection> _tasks;
 		private readonly IMapper _mapper;
 
 
@@ -32,7 +32,7 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 
 		//FEITO?
 
-		public TaskRepository(IMongoCollection<Tasks> tasks, IMapper mapper)
+		public TaskRepository(IMongoCollection<TaskCollection> tasks, IMapper mapper)
 		{
 			_tasks = tasks;
 			_mapper = mapper;
@@ -42,10 +42,9 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 
 		// retornar bool caso criado com sucesso
 		//Feito
-		public async Task<bool> CreateNewTask(Tasks tasks, CancellationToken cancellationToken)
+		public async Task CreateNewTask(Tasks tasks, CancellationToken cancellationToken)
 		{
-			await _tasks.InsertOneAsync(tasks, cancellationToken);
-			return true;
+			await _tasks.InsertOneAsync(tasks,new InsertOneOptions(), cancellationToken);
 
 		}
 
@@ -85,25 +84,14 @@ namespace TaskSystem.Infrastructure.MongoDb.Repository
 
 			var update = Builders<Tasks>.Update
 				.Set(x => x.Title, task.Title)
-				.Set(x => x.Description, task.Description);
-
-
+				.Set(x => x.Description, task.Description)
+				.Set(x => x.CompletationDate, task.CompletationDate)
+				.Set(x => x.CreationDate, task.CreationDate);
 			var result = await _tasks.UpdateOneAsync(filter, update, null, cancellationToken);
 
 			return result.ModifiedCount == 1;
 		}
 
 
-		//Complete Task
-		//Feito?
-		public async Task<bool> CompleteTask(Tasks task, CancellationToken cancellationToken)
-		{
-			var filter = Builders<Tasks>.Filter.Eq(x => x.Id, task.Id);
-			var update = Builders<Tasks>.Update
-				.Set(x => x.CompletationDate, DateTime.Now);
-
-			var result = await _tasks.UpdateOneAsync(filter, update, null, cancellationToken);
-			return result.ModifiedCount == 1;
-		}
 	}
 }

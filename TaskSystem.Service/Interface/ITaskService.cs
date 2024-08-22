@@ -14,7 +14,7 @@ namespace TaskSystem.Service.Interface
 
 		Task<TasksDTO> GetDetailedTask(Guid id, CancellationToken cancellationToken);
 
-		Task<TasksDTO> CreateNewTask(TasksDTO tasksDTO, CancellationToken cancellationToken);
+		Task<Guid> CreateNewTask(TasksDTO tasksDTO, CancellationToken cancellationToken);
 
 		Task<bool> UpdateTask(Guid id, TasksDTO tasksDTO, CancellationToken cancellationToken);
 

@@ -54,28 +54,16 @@ namespace TaskSystem.Service.Services
 			}
 		}
 
-		public async Task<TasksDTO> CreateNewTask(TasksDTO tasksDTO, CancellationToken cancellationToken)
+		public async Task<Guid> CreateNewTask(TasksDTO tasksDTO, CancellationToken cancellationToken)
 		{
 			try
 			{
-				// Esse Mapeamento poderia estar dentro do automapper 
-				//Feito?
 				var task = _mapper.Map<Tasks>(tasksDTO);
 
+				await _taskRepository.CreateNewTask(task, cancellationToken);
 
-				// Esse Mapeamento poderia estar dentro do automapper 
-				//task.NewTask(Guid.NewGuid());
-				//Feito?
+				return task.Id;
 
-				var addResult = await _taskRepository.CreateNewTask(task, cancellationToken);
-
-				if (addResult != null)
-				{
-					return tasksDTO;
-				}
-
-				_logger.LogError("Falha na criação da tarefa. Retorno nulo.");
-				throw new InvalidOperationException("Falha na criação da tarefa. Retorno nulo.");
 			}
 			catch (ArgumentNullException ex)
 			{

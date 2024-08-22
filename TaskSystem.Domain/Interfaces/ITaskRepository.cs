@@ -15,13 +15,11 @@ namespace TaskSystem.Domain.Interfaces
 
 		Task<Tasks> GetDetailedTask(Guid id, CancellationToken cancellationToken);
 
-		Task<bool> CreateNewTask(Tasks tasks, CancellationToken cancellationToken);
+		Task CreateNewTask(Tasks tasks, CancellationToken cancellationToken);
 
 		Task<bool> UpdateTask(Tasks task, CancellationToken cancellationToken);
 
 		Task<bool> DeleteTask(Guid id, CancellationToken cancellationToken);
-
-		Task<bool> CompleteTask(Tasks task, CancellationToken cancellationToken);
 
 
 

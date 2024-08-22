@@ -7,6 +7,8 @@ using TaskSystem.Service.Interface;
 namespace TaskSystem.API.Controllers
 {
 	[ApiController]
+	[ApiVersion("1")]
+	[Route("api/v1/[controller]")]
 	public class TaskController : ControllerBase
 	{
 		private readonly ITaskService _taskService;
@@ -20,8 +22,12 @@ namespace TaskSystem.API.Controllers
 		// Utilizar verbos http para referenciar o que você quer fazer
 		//Feito
 		[HttpPost]
-		[Route("api/v1/task")]
-		public async Task<IActionResult> Create(TasksDTO taskDto, CancellationToken cancellationToken)
+		[Route("")]
+
+
+
+		//NÃO PRECISA TER EXCEPTION NA CONTROLLER. ELA DEVE SER BURRA.
+		public async Task<IActionResult> Create([FromBody] TasksDTO taskDto, CancellationToken cancellationToken)
 		{
 			try
 			{
@@ -56,7 +62,7 @@ namespace TaskSystem.API.Controllers
 		}
 
 		[HttpGet]
-		[Route("api/v1/task")]
+		[Route("")]
 		public async Task<IActionResult> GetAllTasks([FromQuery] Guid? id, CancellationToken cancellationToken)
 		{
 			try
@@ -104,8 +110,8 @@ namespace TaskSystem.API.Controllers
 
 
 		[HttpDelete]
-		[Route("api/v1/task")]
-		public async Task<IActionResult> DeleteTask(Guid id, CancellationToken cancellationToken)
+		[Route("{id}")]
+		public async Task<IActionResult> DeleteTask([FromRoute] Guid id, CancellationToken cancellationToken)
 		{
 			try
 			{
@@ -143,9 +149,9 @@ namespace TaskSystem.API.Controllers
 
 
 		[HttpPut]
-		[Route("api/v1/task")]
+		[Route("{id}")]
 
-		public async Task<IActionResult> UpdateTask(Guid id, TasksDTO taskDto, CancellationToken cancellationToken)
+		public async Task<IActionResult> UpdateTask([FromRoute] Guid id, [FromBody]TasksDTO taskDto, CancellationToken cancellationToken)
 		{
 			try
 			{
@@ -182,8 +188,8 @@ namespace TaskSystem.API.Controllers
 
 
 		[HttpPut]
-		[Route("api/v1/task/complete")]
-		public async Task<IActionResult> CompleteTask(Guid id, CancellationToken cancellationToken)
+		[Route("{id}/Complete")]
+		public async Task<IActionResult> CompleteTask([FromRoute] Guid id, CancellationToken cancellationToken)
 		{
 			try
 			{

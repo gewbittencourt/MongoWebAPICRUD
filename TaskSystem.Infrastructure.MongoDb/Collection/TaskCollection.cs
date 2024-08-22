@@ -10,6 +10,8 @@ namespace TaskSystem.Infrastructure.MongoDb.Collection
 {
 	public class TaskCollection
 	{
+		public const string CollectionName =  "TaskCollection";
+
 		[BsonId]
 		[BsonIgnoreIfDefault]
 		public ObjectId Id { get; set; }
