@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TaskSystem.API.BaseResponse;
 using TaskSystem.Application.Input;
 using TaskSystem.Application.Interface;
 using TaskSystem.Domain.Entities;
@@ -19,8 +20,6 @@ namespace TaskSystem.API.Controllers
 		}
 
 
-		// Utilizar verbos http para referenciar o que você quer fazer
-		//Feito
 		[HttpPost]
 		[Route("")]
 
@@ -29,20 +28,16 @@ namespace TaskSystem.API.Controllers
 		//NÃO PRECISA TER EXCEPTION NA CONTROLLER. ELA DEVE SER BURRA.
 		public async Task<IActionResult> Create([FromBody] CreateTaskInput taskInput, CancellationToken cancellationToken)
 		{
-			// var meu DTOouINPUT = _mapper.Map<TaskDto>(request)
 			// var result = await _taskService.CreateNewTask(DTOouINPUT, cancellationToken);
 			// if (result not is valido?) return MEUMETODOQUECRIAUMACTIONRESULT_DE_ERROR(RESULT)
 			// return MEUMETODOQUECRIAUMACTIONRESULT_DE_SUCESSO(RESULT)
 
 			var result = await _taskService.CreateNewTask(taskInput, cancellationToken);
-			if (result != null)
+			if (result.IsValid)
 			{
-				return new JsonResult(result);
+				return Ok(BaseResponseController.CreateSuccessResponse(result));
 			}
-			return BadRequest(new
-			{
-				message = "Não foi possível completar a tarefa."
-			});
+			return (IActionResult)BaseResponseController.CreateErrorResponse(result.Errors);
 
 		}
 
@@ -55,7 +50,7 @@ namespace TaskSystem.API.Controllers
 				var result = await _taskService.GetDetailedTask(id.Value, cancellationToken);
 				if (result != null)
 				{
-					return new JsonResult(result);
+					return Ok(result);
 				}
 				return new JsonResult("Não foi encontrado a tarefa desejada.");
 
@@ -88,7 +83,7 @@ namespace TaskSystem.API.Controllers
 					taskId = id
 				});
 			}
-			return Ok(new { message = "Tarefa completada com sucesso.", taskId = id });
+			return Ok(result);
 
 		}
 

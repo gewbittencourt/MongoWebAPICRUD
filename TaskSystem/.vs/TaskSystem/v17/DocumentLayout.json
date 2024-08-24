@@ -1,44 +1,36 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem\\",
+  "WorkspaceRootPath": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B86512B1-C133-418F-B4AC-CCABFC730224}|TaskSystem.API.csproj|c:\\aulas\\mongowebapicrud\\tasksystem\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B86512B1-C133-418F-B4AC-CCABFC730224}|TaskSystem.API.csproj|c:\\aula\\portifolio\\mongowebapicrud\\tasksystem\\baseresponse\\baseresponsecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B86512B1-C133-418F-B4AC-CCABFC730224}|TaskSystem.API.csproj|solutionrelative:baseresponse\\baseresponsecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03C43CED-6DBB-478E-AB9C-FCB1E47F71A5}|..\\TaskSystem.Application\\TaskSystem.Application.csproj|c:\\aula\\portifolio\\mongowebapicrud\\tasksystem.application\\baseresponse\\baseresponseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B86512B1-C133-418F-B4AC-CCABFC730224}|TaskSystem.API.csproj|c:\\aula\\portifolio\\mongowebapicrud\\tasksystem\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B86512B1-C133-418F-B4AC-CCABFC730224}|TaskSystem.API.csproj|solutionrelative:controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D59103A9-5175-4F26-9529-2A2E27C2E933}|..\\TaskSystem.Infrastructure.MongoDb\\TaskSystem.Infrastructure.MongoDb.csproj|c:\\aulas\\mongowebapicrud\\tasksystem.infrastructure.mongodb\\repository\\taskrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{03C43CED-6DBB-478E-AB9C-FCB1E47F71A5}|..\\TaskSystem.Application\\TaskSystem.Application.csproj|c:\\aula\\portifolio\\mongowebapicrud\\tasksystem.application\\service\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{03C43CED-6DBB-478E-AB9C-FCB1E47F71A5}|..\\TaskSystem.Application\\TaskSystem.Application.csproj|c:\\aulas\\mongowebapicrud\\tasksystem.application\\mapping\\mappingentitie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B86512B1-C133-418F-B4AC-CCABFC730224}|TaskSystem.API.csproj|c:\\aulas\\mongowebapicrud\\tasksystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B86512B1-C133-418F-B4AC-CCABFC730224}|TaskSystem.API.csproj|c:\\aula\\portifolio\\mongowebapicrud\\tasksystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B86512B1-C133-418F-B4AC-CCABFC730224}|TaskSystem.API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{03C43CED-6DBB-478E-AB9C-FCB1E47F71A5}|..\\TaskSystem.Application\\TaskSystem.Application.csproj|c:\\aulas\\mongowebapicrud\\tasksystem.application\\tasksystem.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{03C43CED-6DBB-478E-AB9C-FCB1E47F71A5}|..\\TaskSystem.Application\\TaskSystem.Application.csproj|c:\\aula\\portifolio\\mongowebapicrud\\tasksystem.application\\interface\\itaskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{03C43CED-6DBB-478E-AB9C-FCB1E47F71A5}|..\\TaskSystem.Application\\TaskSystem.Application.csproj|c:\\aulas\\mongowebapicrud\\tasksystem.application\\service\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D59103A9-5175-4F26-9529-2A2E27C2E933}|..\\TaskSystem.Infrastructure.MongoDb\\TaskSystem.Infrastructure.MongoDb.csproj|c:\\aula\\portifolio\\mongowebapicrud\\tasksystem.infrastructure.mongodb\\mapper\\mappingcollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{03C43CED-6DBB-478E-AB9C-FCB1E47F71A5}|..\\TaskSystem.Application\\TaskSystem.Application.csproj|c:\\aulas\\mongowebapicrud\\tasksystem.application\\interface\\itaskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{03C43CED-6DBB-478E-AB9C-FCB1E47F71A5}|..\\TaskSystem.Application\\TaskSystem.Application.csproj|c:\\aula\\portifolio\\mongowebapicrud\\tasksystem.application\\mapping\\mappingentitie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3F62F1DB-7DFA-45EE-9A92-1752BEBEF86A}|..\\TaskSystem.Domain\\TaskSystem.Domain.csproj|c:\\aulas\\mongowebapicrud\\tasksystem.domain\\entities\\tasks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{03C43CED-6DBB-478E-AB9C-FCB1E47F71A5}|..\\TaskSystem.Application\\TaskSystem.Application.csproj|c:\\aulas\\mongowebapicrud\\tasksystem.application\\input\\createtaskinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{03C43CED-6DBB-478E-AB9C-FCB1E47F71A5}|..\\TaskSystem.Application\\TaskSystem.Application.csproj|c:\\aulas\\mongowebapicrud\\tasksystem.application\\output\\gettaskoutput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D59103A9-5175-4F26-9529-2A2E27C2E933}|..\\TaskSystem.Infrastructure.MongoDb\\TaskSystem.Infrastructure.MongoDb.csproj|c:\\aulas\\mongowebapicrud\\tasksystem.infrastructure.mongodb\\mapper\\mappingcollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D59103A9-5175-4F26-9529-2A2E27C2E933}|..\\TaskSystem.Infrastructure.MongoDb\\TaskSystem.Infrastructure.MongoDb.csproj|c:\\aulas\\mongowebapicrud\\tasksystem.infrastructure.mongodb\\collection\\taskcollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{03C43CED-6DBB-478E-AB9C-FCB1E47F71A5}|..\\TaskSystem.Application\\TaskSystem.Application.csproj|c:\\aula\\portifolio\\mongowebapicrud\\tasksystem.application\\output\\gettaskoutput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Interface\\ITaskService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -54,6 +46,36 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\TaskSystem.Service.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Mapping\\MappingEntitie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Interface\\ITaskService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Output\\GetTaskOutput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Input\\CreateTaskInput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Domain\\Entities\\Tasks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Repository\\TaskRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Service\\TaskService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\TaskSystem.Application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Collection\\TaskCollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Mapper\\MappingCollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -63,7 +85,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -75,156 +97,109 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MappingEntitie.cs",
-              "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Mapping\\MappingEntitie.cs",
-              "RelativeDocumentMoniker": "..\\TaskSystem.Application\\Mapping\\MappingEntitie.cs",
-              "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Mapping\\MappingEntitie.cs",
-              "RelativeToolTip": "..\\TaskSystem.Application\\Mapping\\MappingEntitie.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAADAAAA",
+              "DocumentIndex": 1,
+              "Title": "BaseResponseApplication.cs",
+              "DocumentMoniker": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Application\\BaseResponse\\BaseResponseApplication.cs",
+              "RelativeDocumentMoniker": "..\\TaskSystem.Application\\BaseResponse\\BaseResponseApplication.cs",
+              "ToolTip": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Application\\BaseResponse\\BaseResponseApplication.cs",
+              "RelativeToolTip": "..\\TaskSystem.Application\\BaseResponse\\BaseResponseApplication.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-22T17:40:31.901Z",
+              "WhenOpened": "2024-08-24T03:25:11.156Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ITaskService.cs",
-              "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Interface\\ITaskService.cs",
-              "RelativeDocumentMoniker": "..\\TaskSystem.Application\\Interface\\ITaskService.cs",
-              "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Interface\\ITaskService.cs",
-              "RelativeToolTip": "..\\TaskSystem.Application\\Interface\\ITaskService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAACAAAA",
+              "DocumentIndex": 0,
+              "Title": "BaseResponseController.cs",
+              "DocumentMoniker": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem\\BaseResponse\\BaseResponseController.cs",
+              "RelativeDocumentMoniker": "BaseResponse\\BaseResponseController.cs",
+              "ToolTip": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem\\BaseResponse\\BaseResponseController.cs",
+              "RelativeToolTip": "BaseResponse\\BaseResponseController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-22T17:28:16.725Z"
+              "WhenOpened": "2024-08-24T03:15:07.489Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "GetTaskOutput.cs",
-              "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Output\\GetTaskOutput.cs",
-              "RelativeDocumentMoniker": "..\\TaskSystem.Application\\Output\\GetTaskOutput.cs",
-              "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Output\\GetTaskOutput.cs",
-              "RelativeToolTip": "..\\TaskSystem.Application\\Output\\GetTaskOutput.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAeAAAA",
+              "DocumentIndex": 3,
+              "Title": "TaskService.cs",
+              "DocumentMoniker": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Application\\Service\\TaskService.cs",
+              "RelativeDocumentMoniker": "..\\TaskSystem.Application\\Service\\TaskService.cs",
+              "ToolTip": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Application\\Service\\TaskService.cs",
+              "RelativeToolTip": "..\\TaskSystem.Application\\Service\\TaskService.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAgwDQAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-22T17:25:33.226Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ITaskService.cs",
-              "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Interface\\ITaskService.cs",
-              "RelativeDocumentMoniker": "..\\TaskSystem.Service\\Interface\\ITaskService.cs",
-              "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Interface\\ITaskService.cs",
-              "RelativeToolTip": "..\\TaskSystem.Service\\Interface\\ITaskService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-22T17:23:41.602Z"
+              "WhenOpened": "2024-08-24T02:50:25.196Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "CreateTaskInput.cs",
-              "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Input\\CreateTaskInput.cs",
-              "RelativeDocumentMoniker": "..\\TaskSystem.Application\\Input\\CreateTaskInput.cs",
-              "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Input\\CreateTaskInput.cs",
-              "RelativeToolTip": "..\\TaskSystem.Application\\Input\\CreateTaskInput.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAHAAAA",
+              "Title": "GetTaskOutput.cs",
+              "DocumentMoniker": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Application\\Output\\GetTaskOutput.cs",
+              "RelativeDocumentMoniker": "..\\TaskSystem.Application\\Output\\GetTaskOutput.cs",
+              "ToolTip": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Application\\Output\\GetTaskOutput.cs",
+              "RelativeToolTip": "..\\TaskSystem.Application\\Output\\GetTaskOutput.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-22T17:18:40.937Z"
+              "WhenOpened": "2024-08-24T02:49:39.798Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 10,
               "Title": "TasksDTO.cs",
               "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\DTO\\TasksDTO.cs",
-              "RelativeDocumentMoniker": "..\\TaskSystem.Service\\DTO\\TasksDTO.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\DTO\\TasksDTO.cs",
               "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\DTO\\TasksDTO.cs",
-              "RelativeToolTip": "..\\TaskSystem.Service\\DTO\\TasksDTO.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\DTO\\TasksDTO.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-22T15:27:50.695Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 18,
               "Title": "Tasks.cs",
               "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Domain\\Entities\\Tasks.cs",
-              "RelativeDocumentMoniker": "..\\TaskSystem.Domain\\Entities\\Tasks.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Domain\\Entities\\Tasks.cs",
               "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Domain\\Entities\\Tasks.cs",
-              "RelativeToolTip": "..\\TaskSystem.Domain\\Entities\\Tasks.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Domain\\Entities\\Tasks.cs",
               "ViewState": "AQIAABYAAAAAAAAAAAAcwCcAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-22T12:45:17.736Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 11,
               "Title": "TaskServices.cs",
               "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Services\\TaskServices.cs",
-              "RelativeDocumentMoniker": "..\\TaskSystem.Service\\Services\\TaskServices.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Services\\TaskServices.cs",
               "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Services\\TaskServices.cs",
-              "RelativeToolTip": "..\\TaskSystem.Service\\Services\\TaskServices.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Services\\TaskServices.cs",
               "ViewState": "AQIAAKkAAAAAAAAAAAAswLwAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-22T12:32:45.393Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TaskRepository.cs",
-              "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Repository\\TaskRepository.cs",
-              "RelativeDocumentMoniker": "..\\TaskSystem.Infrastructure.MongoDb\\Repository\\TaskRepository.cs",
-              "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Repository\\TaskRepository.cs",
-              "RelativeToolTip": "..\\TaskSystem.Infrastructure.MongoDb\\Repository\\TaskRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-22T12:05:43.925Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "MappingDTO.cs",
-              "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Mapper\\MappingDTO.cs",
-              "RelativeDocumentMoniker": "..\\TaskSystem.Service\\Mapper\\MappingDTO.cs",
-              "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Mapper\\MappingDTO.cs",
-              "RelativeToolTip": "..\\TaskSystem.Service\\Mapper\\MappingDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-22T12:05:09.828Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAACgAAAAAAAAAAAAgwB8AAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-22T12:08:04.479Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "TaskController.cs",
-              "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem\\Controllers\\TaskController.cs",
+              "DocumentMoniker": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem\\Controllers\\TaskController.cs",
               "RelativeDocumentMoniker": "Controllers\\TaskController.cs",
-              "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem\\Controllers\\TaskController.cs",
+              "ToolTip": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem\\Controllers\\TaskController.cs",
               "RelativeToolTip": "Controllers\\TaskController.cs",
-              "ViewState": "AQIAAGAAAAAAAAAAAAAIwIcAAAAAAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAA1wCgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-22T12:28:58.522Z",
               "EditorCaption": ""
@@ -232,59 +207,194 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "ITaskService.cs",
+              "DocumentMoniker": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Application\\Interface\\ITaskService.cs",
+              "RelativeDocumentMoniker": "..\\TaskSystem.Application\\Interface\\ITaskService.cs",
+              "ToolTip": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Application\\Interface\\ITaskService.cs",
+              "RelativeToolTip": "..\\TaskSystem.Application\\Interface\\ITaskService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-24T03:29:26.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAgwDgAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-22T12:08:04.479Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MappingEntitie.cs",
+              "DocumentMoniker": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Application\\Mapping\\MappingEntitie.cs",
+              "RelativeDocumentMoniker": "..\\TaskSystem.Application\\Mapping\\MappingEntitie.cs",
+              "ToolTip": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Application\\Mapping\\MappingEntitie.cs",
+              "RelativeToolTip": "..\\TaskSystem.Application\\Mapping\\MappingEntitie.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-24T02:49:58.275Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MappingCollection.cs",
+              "DocumentMoniker": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Mapper\\MappingCollection.cs",
+              "RelativeDocumentMoniker": "..\\TaskSystem.Infrastructure.MongoDb\\Mapper\\MappingCollection.cs",
+              "ToolTip": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Mapper\\MappingCollection.cs",
+              "RelativeToolTip": "..\\TaskSystem.Infrastructure.MongoDb\\Mapper\\MappingCollection.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-24T02:52:20.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "CreateTaskInput.cs",
+              "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Input\\CreateTaskInput.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Input\\CreateTaskInput.cs",
+              "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Input\\CreateTaskInput.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Input\\CreateTaskInput.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-22T17:18:40.937Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "TaskRepository.cs",
+              "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Repository\\TaskRepository.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Repository\\TaskRepository.cs",
+              "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Repository\\TaskRepository.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Repository\\TaskRepository.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-22T12:05:43.925Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ITaskService.cs",
+              "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Interface\\ITaskService.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Interface\\ITaskService.cs",
+              "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Interface\\ITaskService.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Interface\\ITaskService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-22T17:23:41.602Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "GetTaskOutput.cs",
+              "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Output\\GetTaskOutput.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Output\\GetTaskOutput.cs",
+              "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Output\\GetTaskOutput.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Output\\GetTaskOutput.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-22T17:25:33.226Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MappingDTO.cs",
+              "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Mapper\\MappingDTO.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Mapper\\MappingDTO.cs",
+              "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Mapper\\MappingDTO.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\Mapper\\MappingDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-22T12:05:09.828Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ITaskService.cs",
+              "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Interface\\ITaskService.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Interface\\ITaskService.cs",
+              "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Interface\\ITaskService.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Interface\\ITaskService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-22T17:28:16.725Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MappingEntitie.cs",
+              "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Mapping\\MappingEntitie.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Mapping\\MappingEntitie.cs",
+              "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Mapping\\MappingEntitie.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Mapping\\MappingEntitie.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-22T17:40:31.901Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "TaskService.cs",
               "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Service\\TaskService.cs",
-              "RelativeDocumentMoniker": "..\\TaskSystem.Application\\Service\\TaskService.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Service\\TaskService.cs",
               "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Service\\TaskService.cs",
-              "RelativeToolTip": "..\\TaskSystem.Application\\Service\\TaskService.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\Service\\TaskService.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAABIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-22T17:29:59.917Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 21,
               "Title": "TaskSystem.Application.csproj",
               "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\TaskSystem.Application.csproj",
-              "RelativeDocumentMoniker": "..\\TaskSystem.Application\\TaskSystem.Application.csproj",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\TaskSystem.Application.csproj",
               "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\TaskSystem.Application.csproj",
-              "RelativeToolTip": "..\\TaskSystem.Application\\TaskSystem.Application.csproj",
+              "RelativeToolTip": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Application\\TaskSystem.Application.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-08-22T17:38:40.416Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 22,
               "Title": "TaskCollection.cs",
               "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Collection\\TaskCollection.cs",
-              "RelativeDocumentMoniker": "..\\TaskSystem.Infrastructure.MongoDb\\Collection\\TaskCollection.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Collection\\TaskCollection.cs",
               "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Collection\\TaskCollection.cs",
-              "RelativeToolTip": "..\\TaskSystem.Infrastructure.MongoDb\\Collection\\TaskCollection.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Collection\\TaskCollection.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAAoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-22T12:15:59.994Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 13,
               "Title": "TaskSystem.Service.csproj",
               "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\TaskSystem.Service.csproj",
-              "RelativeDocumentMoniker": "..\\TaskSystem.Service\\TaskSystem.Service.csproj",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\TaskSystem.Service.csproj",
               "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\TaskSystem.Service.csproj",
-              "RelativeToolTip": "..\\TaskSystem.Service\\TaskSystem.Service.csproj",
+              "RelativeToolTip": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Service\\TaskSystem.Service.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-08-22T12:36:19.764Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 23,
               "Title": "MappingCollection.cs",
               "DocumentMoniker": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Mapper\\MappingCollection.cs",
-              "RelativeDocumentMoniker": "..\\TaskSystem.Infrastructure.MongoDb\\Mapper\\MappingCollection.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Mapper\\MappingCollection.cs",
               "ToolTip": "C:\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Mapper\\MappingCollection.cs",
-              "RelativeToolTip": "..\\TaskSystem.Infrastructure.MongoDb\\Mapper\\MappingCollection.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Aulas\\MongoWebAPICRUD\\TaskSystem.Infrastructure.MongoDb\\Mapper\\MappingCollection.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAkwBIAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-22T12:05:12.514Z"

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
+using TaskSystem.Application.BaseResponse;
 using TaskSystem.Application.Input;
 using TaskSystem.Application.Interface;
 using TaskSystem.Application.Output;
@@ -22,35 +23,9 @@ namespace TaskSystem.Application.Service
 			_logger = logger;
 		}
 
-		public async Task<bool> CompleteTask(Guid id, CancellationToken cancellationToken)
-		{
-			try
-			{
-				var task = await _taskRepository.GetDetailedTask(id, cancellationToken);
-				task.Complete();
-				var updated = await _taskRepository.UpdateTask(task, cancellationToken);
 
-				if (!updated)
-				{
-					_logger.LogError("A tarefa não pode ser concluída.");
-					throw new InvalidOperationException("A tarefa não pode ser concluída.");
-				}
 
-				return true;
-			}
-			catch (OperationCanceledException ex)
-			{
-				_logger.LogWarning(ex, "A operação foi cancelada.");
-				throw;
-			}
-			catch (Exception ex)
-			{
-				_logger.LogError(ex, "Um erro ocorreu ao tentar completar a tarefa.");
-				return false;
-			}
-		}
-
-		public async Task<Guid> CreateNewTask(CreateTaskInput createTask, CancellationToken cancellationToken)
+		public async Task<BaseResponseApplication> CreateNewTask(CreateTaskInput createTask, CancellationToken cancellationToken)
 		{
 			try
 			{
@@ -58,7 +33,8 @@ namespace TaskSystem.Application.Service
 
 				await _taskRepository.CreateNewTask(task, cancellationToken);
 
-				return task.Id;
+				return BaseResponseApplication.Success();
+				//return task.Id;
 
 			}
 			catch (ArgumentNullException ex)
@@ -74,6 +50,7 @@ namespace TaskSystem.Application.Service
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Erro inesperado ao criar a task.");
+				return BaseResponseApplication.Failure(ex);
 				throw;
 			}
 		}
@@ -213,6 +190,36 @@ namespace TaskSystem.Application.Service
 			{
 				_logger.LogError("Ocorreu um erro inesperado ao atualizar a tarefa.");
 				throw new ApplicationException("Ocorreu um erro inesperado ao atualizar a tarefa.", ex);
+			}
+		}
+
+
+
+		public async Task<bool> CompleteTask(Guid id, CancellationToken cancellationToken)
+		{
+			try
+			{
+				var task = await _taskRepository.GetDetailedTask(id, cancellationToken);
+				task.Complete();
+				var updated = await _taskRepository.UpdateTask(task, cancellationToken);
+
+				if (!updated)
+				{
+					_logger.LogError("A tarefa não pode ser concluída.");
+					throw new InvalidOperationException("A tarefa não pode ser concluída.");
+				}
+
+				return true;
+			}
+			catch (OperationCanceledException ex)
+			{
+				_logger.LogWarning(ex, "A operação foi cancelada.");
+				throw;
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Um erro ocorreu ao tentar completar a tarefa.");
+				return false;
 			}
 		}
 	}

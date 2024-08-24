@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskSystem.Application.BaseResponse;
 using TaskSystem.Application.Input;
 using TaskSystem.Application.Output;
 
@@ -14,7 +15,7 @@ namespace TaskSystem.Application.Interface
 
 		Task<GetTaskOutput> GetDetailedTask(Guid id, CancellationToken cancellationToken);
 
-		Task<Guid> CreateNewTask(CreateTaskInput taskInput, CancellationToken cancellationToken);
+		Task<BaseResponseApplication> CreateNewTask(CreateTaskInput taskInput, CancellationToken cancellationToken);
 
 		Task<bool> UpdateTask(Guid id, CreateTaskInput taskInput, CancellationToken cancellationToken);
 
