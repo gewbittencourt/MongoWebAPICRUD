@@ -1,15 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaskSystem.API.Controllers;
-using TaskSystem.Domain.Entities;
-using TaskSystem.Service.DTO;
-using TaskSystem.Service.Interface;
-
+using TaskSystem.Application.BaseResponse;
+using TaskSystem.Application.Input;
+using TaskSystem.Application.Interface;
 namespace TaskSystem.Tests
 {
 	public class TaskControllerTest
@@ -29,8 +23,8 @@ namespace TaskSystem.Tests
 		public async Task GetAllTask_ReturnIEnumerable_WhenSuccessfull()
 		{
 			//Arrange
-			var listTask = new List<TasksDTO>();
-			_mockService.Setup(services => services.GetAllTasks(It.IsAny<CancellationToken>())).ReturnsAsync(listTask);
+			var output = BaseOutputApplication.Success();
+			_mockService.Setup(services => services.GetAllTasks(It.IsAny<CancellationToken>())).ReturnsAsync(output);
 
 
 			//Act
@@ -39,7 +33,7 @@ namespace TaskSystem.Tests
 
 			//Asserts
 			Assert.NotNull(result);
-			Assert.IsType<JsonResult>(result);
+			Assert.IsType<OkObjectResult>(result);
 		}
 
 		[Fact]
@@ -47,8 +41,9 @@ namespace TaskSystem.Tests
 		{
 
 			//Arrange
-			var task = new TasksDTO();
-			_mockService.Setup(services => services.GetDetailedTask(task.Id, It.IsAny<CancellationToken>())).ReturnsAsync(task);
+			var task = BaseOutputApplication.Success();
+			var id = new Guid();
+			_mockService.Setup(services => services.GetDetailedTask(id, It.IsAny<CancellationToken>())).ReturnsAsync(task);
 
 
 			//Act
@@ -57,7 +52,7 @@ namespace TaskSystem.Tests
 
 			//Asserts
 			Assert.NotNull(result);
-			Assert.IsType<JsonResult>(result);
+			Assert.IsType<OkObjectResult>(result);
 		}
 
 
@@ -65,16 +60,17 @@ namespace TaskSystem.Tests
 		public async Task CreateNewTask_ReturnJson_WhenSuccessfull()
 		{
 			//Arrange
-			var task = new TasksDTO();
-			_mockService.Setup(Service => Service.CreateNewTask(task, It.IsAny<CancellationToken>())).ReturnsAsync(task);
+			var task = BaseOutputApplication.Success();
+			var inputTask = new CreateTaskInput();
+			_mockService.Setup(Service => Service.CreateNewTask(inputTask, It.IsAny<CancellationToken>())).ReturnsAsync(task);
 
 
 			//Act
-			var result = await _taskController.Create(task, It.IsAny<CancellationToken>());
+			var result = await _taskController.Create(inputTask, It.IsAny<CancellationToken>());
 
 			//Asserts
 			Assert.NotNull(result);
-			Assert.IsType<JsonResult>(result);
+			Assert.IsType<OkObjectResult>(result);
 		}
 
 
@@ -83,7 +79,8 @@ namespace TaskSystem.Tests
 		{
 			//Arrange
 			var id = Guid.NewGuid();
-			_mockService.Setup(service => service.DeleteTask(id, It.IsAny<CancellationToken>())).ReturnsAsync(true);
+			var task = BaseOutputApplication.Success();
+			_mockService.Setup(service => service.DeleteTask(id, It.IsAny<CancellationToken>())).ReturnsAsync(task);
 
 
 			//Act
@@ -100,12 +97,13 @@ namespace TaskSystem.Tests
 		public async Task UpdateUser_ReturnOk_WhenSuccessfull()
 		{
 			//Arrange
-			var task = new TasksDTO();
-			_mockService.Setup(service => service.UpdateTask(task.Id, task, It.IsAny<CancellationToken>())).ReturnsAsync(true);
+			var task = new CreateTaskInput();
+			var id = Guid.NewGuid();
+			_mockService.Setup(service => service.UpdateTask(id, task, It.IsAny<CancellationToken>())).ReturnsAsync(BaseOutputApplication.Success());
 
 
 			//Act
-			var result = await _taskController.UpdateTask(task.Id, task, It.IsAny<CancellationToken>());
+			var result = await _taskController.UpdateTask(id, task, It.IsAny<CancellationToken>());
 
 
 			//Asserts
@@ -118,7 +116,7 @@ namespace TaskSystem.Tests
 		{
 			//Arrange
 			var id = new Guid();
-			_mockService.Setup(service => service.CompleteTask(id, It.IsAny<CancellationToken>())).ReturnsAsync(true);
+			_mockService.Setup(service => service.CompleteTask(id, It.IsAny<CancellationToken>())).ReturnsAsync(BaseOutputApplication.Success());
 
 
 			//Act

@@ -1,16 +1,12 @@
 ﻿using AutoMapper;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaskSystem.Domain.Entities;
 using TaskSystem.Domain.Interfaces;
-using TaskSystem.Service.Mapper;
-using TaskSystem.Service.DTO;
-using TaskSystem.Service.Services;
 using Microsoft.Extensions.Logging;
+using TaskSystem.Application.Service;
+using TaskSystem.Application.BaseResponse;
+using TaskSystem.Application.Input;
+using TaskSystem.Application.Output;
 
 namespace TaskSystem.Tests.Service.Test
 {
@@ -35,14 +31,15 @@ namespace TaskSystem.Tests.Service.Test
 		{
 			//Arrange
 			var id = Guid.NewGuid();
-			_mockTaskRepository.Setup(repository => repository.CompleteTask(id, It.IsAny<CancellationToken>())).ReturnsAsync(true);
+			_mockTaskRepository.Setup(repository => repository.GetDetailedTask(id, It.IsAny<CancellationToken>())).ReturnsAsync(new Tasks("teste", "teste"));
+			_mockTaskRepository.Setup(repository => repository.UpdateTask(It.IsAny<Tasks>(), It.IsAny<CancellationToken>())).ReturnsAsync(true);
 
 			//Act
 			var result = await _taskServices.CompleteTask(id, It.IsAny<CancellationToken>());
 
 
 			//Asserts
-			Assert.True(result);
+			Assert.IsType<BaseOutputApplication>(result);
 
 		}
 
@@ -50,23 +47,21 @@ namespace TaskSystem.Tests.Service.Test
 		public async Task CreateNewTask_ReturnTaskDTO_WhenSuccessfull()
 		{
 			//Arrange
-			var taskDTO = new TasksDTO { Id = new Guid(), CompletationDate = DateTime.Now, CreationDate = DateTime.Now, Description = "teste", Title = "teste" };
-			var task = new Tasks(title: taskDTO.Title, description: taskDTO.Description);
-			task.NewTask(Guid.NewGuid());
-			_mockTaskRepository.Setup(repository => repository.CreateNewTask(It.IsAny<Tasks>(), It.IsAny<CancellationToken>())).ReturnsAsync(task);
-			_mockMapper.Setup(mapper => mapper.Map<TasksDTO>(task)).Returns(taskDTO);
+			var taskInput = new CreateTaskInput{Description = "teste", Title = "teste" };
+			_mockMapper.Setup(mapper => mapper.Map<Tasks>(taskInput)).Returns(new Tasks(taskInput.Title, taskInput.Description));
+			_mockTaskRepository.Setup(repository => repository.CreateNewTask(It.IsAny<Tasks>(), It.IsAny<CancellationToken>()));
+
 
 
 			//Act
-			var result = await _taskServices.CreateNewTask(taskDTO, It.IsAny<CancellationToken>());
+			var result = await _taskServices.CreateNewTask(taskInput, It.IsAny<CancellationToken>());
 
 
 			//Asserts
-			Assert.IsType<TasksDTO>(result);
-			Assert.Equal(taskDTO.Title, result.Title);
+			Assert.IsType<BaseOutputApplication>(result);
 		}
 
-
+		
 		[Fact]
 		public async Task DeleteTask_ReturnBool_WhenSuccessfull()
 		{
@@ -78,61 +73,59 @@ namespace TaskSystem.Tests.Service.Test
 			var result = await _taskServices.DeleteTask(id, It.IsAny<CancellationToken>());
 
 			//Asserts
-			Assert.True(result);
+			Assert.IsType<BaseOutputApplication>(result);
 
 		}
-
+		
 		[Fact]
 		public async Task GetAllTasks_ReturnIEnumerable_WhenSuccessfull()
 		{
 			//Arrange
-			var taskDTO = new List<TasksDTO>();
+			var taskInput = new List<CreateTaskInput>();
+			var getOutput = new List<GetTaskOutput>();
 			var task = new List<Tasks>();
 			_mockTaskRepository.Setup(repository => repository.GetAllTasks(It.IsAny<CancellationToken>())).ReturnsAsync(task);
-			_mockMapper.Setup(mapper => mapper.Map<IEnumerable<TasksDTO>>(It.IsAny<Tasks>())).Returns(taskDTO);
+			_mockMapper.Setup(mapper => mapper.Map<IEnumerable<GetTaskOutput>>(It.IsAny<Tasks>())).Returns(getOutput);
 
 			//Act
 			var result = await _taskServices.GetAllTasks(It.IsAny<CancellationToken>());
 
 			//Assert
-			var returnValue = Assert.IsAssignableFrom<IEnumerable<TasksDTO>>(result);
+			Assert.IsType<BaseOutputApplication>(result);
 
 		}
-
+		
 		[Fact]
 		public async Task GetDetailedTask_ReturnTaskDTO_WhenSuccessfull()
 		{
 			//Arrange
-			var taskDTO = new TasksDTO { Id = new Guid(), CompletationDate = DateTime.Now, CreationDate = DateTime.Now, Description = "teste", Title = "teste" };
-			var task = new Tasks(title: taskDTO.Title, description: taskDTO.Description);
-			task.NewTask(Guid.NewGuid());
-			taskDTO.Id = task.Id;
+			var taskInput = new CreateTaskInput {Description = "teste", Title = "teste" };
+			var taskOutput = new GetTaskOutput();
+			var task = new Tasks(title: taskInput.Title, description: taskInput.Description);
 			_mockTaskRepository.Setup(repository => repository.GetDetailedTask(task.Id, It.IsAny<CancellationToken>())).ReturnsAsync(task);
-			_mockMapper.Setup(mapper => mapper.Map<TasksDTO>(It.IsAny<Tasks>())).Returns(taskDTO);
+			_mockMapper.Setup(mapper => mapper.Map<GetTaskOutput>(task)).Returns(taskOutput);
 
 			//Act
-			var result = await _taskServices.GetDetailedTask(taskDTO.Id, It.IsAny<CancellationToken>());
+			var result = await _taskServices.GetDetailedTask(task.Id, It.IsAny<CancellationToken>());
 
 			//Asserts
-			Assert.IsType<TasksDTO>(result);
+			Assert.IsType<BaseOutputApplication>(result);
 		}
-
 		[Fact]
 		public async Task UpdateTask_ReturnBool_WhenSuccessfull()
 		{
 			//Arrange
-			var id = Guid.NewGuid();
-			var taskDTO = new TasksDTO { Id = new Guid(), CompletationDate = DateTime.Now, CreationDate = DateTime.Now, Description = "teste", Title = "teste" };
-			var task = new Tasks(title: taskDTO.Title, description: taskDTO.Description);
-			task.NewTask(Guid.NewGuid());
-			_mockMapper.Setup(mapper => mapper.Map<Tasks>(taskDTO)).Returns(task);
-			_mockTaskRepository.Setup(repository => repository.UpdateTask(id, task, It.IsAny<CancellationToken>())).ReturnsAsync(true);
+			var taskInput = new CreateTaskInput {Description = "teste", Title = "teste" };
+			var task = new Tasks(title: taskInput.Title, description: taskInput.Description);
+			_mockTaskRepository.Setup(repository => repository.GetDetailedTask(task.Id, It.IsAny<CancellationToken>())).ReturnsAsync(task);
+			_mockMapper.Setup(mapper => mapper.Map<Tasks>(taskInput)).Returns(task);
+			_mockTaskRepository.Setup(repository => repository.UpdateTask(task, It.IsAny<CancellationToken>())).ReturnsAsync(true);
 
 			//Act
-			var result = await _taskServices.UpdateTask(id, taskDTO, It.IsAny<CancellationToken>());
+			var result = await _taskServices.UpdateTask(task.Id, taskInput, It.IsAny<CancellationToken>());
 
 			//Assert
-			Assert.True(result);
+			Assert.IsType<BaseOutputApplication>(result);
 
 		}
 	}

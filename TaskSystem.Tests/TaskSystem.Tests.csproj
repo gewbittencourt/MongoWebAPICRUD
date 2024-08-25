@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TaskSystem.Application\TaskSystem.Application.csproj" />
     <ProjectReference Include="..\TaskSystem.Domain\TaskSystem.Domain.csproj" />
     <ProjectReference Include="..\TaskSystem.Infrastructure.MongoDb\TaskSystem.Infrastructure.MongoDb.csproj" />
     <ProjectReference Include="..\TaskSystem.Service\TaskSystem.Service.csproj" />

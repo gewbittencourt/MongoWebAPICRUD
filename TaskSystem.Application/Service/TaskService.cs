@@ -25,7 +25,7 @@ namespace TaskSystem.Application.Service
 
 
 
-		public async Task<BaseResponseApplication> CreateNewTask(CreateTaskInput createTask, CancellationToken cancellationToken)
+		public async Task<BaseOutputApplication> CreateNewTask(CreateTaskInput createTask, CancellationToken cancellationToken)
 		{
 			try
 			{
@@ -33,7 +33,7 @@ namespace TaskSystem.Application.Service
 
 				await _taskRepository.CreateNewTask(task, cancellationToken);
 
-				return BaseResponseApplication.Success();
+				return BaseOutputApplication.Success();
 				//return task.Id;
 
 			}
@@ -50,13 +50,13 @@ namespace TaskSystem.Application.Service
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Erro inesperado ao criar a task.");
-				return BaseResponseApplication.Failure(ex);
+				return BaseOutputApplication.Failure(ex);
 				throw;
 			}
 		}
 
 
-		public async Task<bool> DeleteTask(Guid id, CancellationToken cancellationToken)
+		public async Task<BaseOutputApplication> DeleteTask(Guid id, CancellationToken cancellationToken)
 		{
 			try
 			{
@@ -68,7 +68,7 @@ namespace TaskSystem.Application.Service
 					throw new InvalidOperationException($"Falha ao deletar a tarefa com o ID {id}. A tarefa pode não existir.");
 				}
 
-				return deletedTask;
+				return BaseOutputApplication.Success(deletedTask);
 			}
 			catch (ArgumentNullException ex)
 			{
@@ -89,7 +89,7 @@ namespace TaskSystem.Application.Service
 
 
 
-		public async Task<IEnumerable<GetTaskOutput>> GetAllTasks(CancellationToken cancellationToken)
+		public async Task<BaseOutputApplication> GetAllTasks(CancellationToken cancellationToken)
 		{
 			try
 			{
@@ -102,7 +102,7 @@ namespace TaskSystem.Application.Service
 				}
 
 				var returnList = _mapper.Map<IEnumerable<GetTaskOutput>>(resultTask);
-				return returnList;
+				return BaseOutputApplication.Success(returnList);
 			}
 			catch (OperationCanceledException ex)
 			{
@@ -116,7 +116,7 @@ namespace TaskSystem.Application.Service
 			}
 		}
 
-		public async Task<GetTaskOutput> GetDetailedTask(Guid id, CancellationToken cancellationToken)
+		public async Task<BaseOutputApplication> GetDetailedTask(Guid id, CancellationToken cancellationToken)
 		{
 			try
 			{
@@ -129,7 +129,7 @@ namespace TaskSystem.Application.Service
 				}
 
 				var returnOutput = _mapper.Map<GetTaskOutput>(resultTask);
-				return returnOutput;
+				return BaseOutputApplication.Success(returnOutput);
 			}
 
 
@@ -151,7 +151,7 @@ namespace TaskSystem.Application.Service
 		}
 
 
-		public async Task<bool> UpdateTask(Guid id, CreateTaskInput taskInput, CancellationToken cancellationToken)
+		public async Task<BaseOutputApplication> UpdateTask(Guid id, CreateTaskInput taskInput, CancellationToken cancellationToken)
 		{
 			try
 			{
@@ -174,7 +174,7 @@ namespace TaskSystem.Application.Service
 					throw new InvalidOperationException($"Falha ao atualizar a tarefa com o ID {id}. A tarefa pode não existir ou os dados não foram salvos corretamente.");
 				}
 
-				return update;
+				return BaseOutputApplication.Success(update);
 			}
 			catch (ArgumentNullException ex)
 			{
@@ -195,7 +195,7 @@ namespace TaskSystem.Application.Service
 
 
 
-		public async Task<bool> CompleteTask(Guid id, CancellationToken cancellationToken)
+		public async Task<BaseOutputApplication> CompleteTask(Guid id, CancellationToken cancellationToken)
 		{
 			try
 			{
@@ -209,7 +209,7 @@ namespace TaskSystem.Application.Service
 					throw new InvalidOperationException("A tarefa não pode ser concluída.");
 				}
 
-				return true;
+				return BaseOutputApplication.Success(updated);
 			}
 			catch (OperationCanceledException ex)
 			{
@@ -219,7 +219,7 @@ namespace TaskSystem.Application.Service
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Um erro ocorreu ao tentar completar a tarefa.");
-				return false;
+				throw;
 			}
 		}
 	}
