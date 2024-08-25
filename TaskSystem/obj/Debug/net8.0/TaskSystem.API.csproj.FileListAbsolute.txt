@@ -151,6 +151,10 @@ C:\Aula\Portifolio\TaskSystem\TaskSystem\bin\Debug\net8.0\Castle.Core.dll
 C:\Aula\Portifolio\TaskSystem\TaskSystem\bin\Debug\net8.0\Moq.dll
 C:\Aulas\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\Castle.Core.dll
 C:\Aulas\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\Moq.dll
+C:\Aulas\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Versioning.dll
+C:\Aulas\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\TaskSystem.Application.dll
+C:\Aulas\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\TaskSystem.Application.pdb
+C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\CoverletSourceRootsMapping_TaskSystem.API
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\appsettings.Development.json
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\appsettings.json
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\TaskSystem.API.exe
@@ -163,6 +167,7 @@ C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\AWSSDK.Core.dll
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\AWSSDK.SecurityToken.dll
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\Castle.Core.dll
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\DnsClient.dll
+C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Versioning.dll
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\MongoDB.Bson.dll
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\MongoDB.Driver.dll
@@ -178,8 +183,10 @@ C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\ZstdSharp.dll
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\runtimes\linux\native\libmongocrypt.so
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\runtimes\osx\native\libmongocrypt.dylib
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\runtimes\win\native\mongocrypt.dll
+C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\TaskSystem.Application.dll
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\TaskSystem.Domain.dll
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\TaskSystem.Infrastructure.MongoDb.dll
+C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\TaskSystem.Application.pdb
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\TaskSystem.Domain.pdb
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\TaskSystem.Infrastructure.MongoDb.pdb
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\obj\Debug\net8.0\TaskSystem.API.csproj.AssemblyReference.cache
@@ -204,9 +211,3 @@ C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\obj\Debug\net8.0\refint\TaskSystem
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\obj\Debug\net8.0\TaskSystem.API.pdb
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\obj\Debug\net8.0\TaskSystem.API.genruntimeconfig.cache
 C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\obj\Debug\net8.0\ref\TaskSystem.API.dll
-C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Versioning.dll
-C:\Aulas\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Versioning.dll
-C:\Aulas\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\TaskSystem.Application.dll
-C:\Aulas\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\TaskSystem.Application.pdb
-C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\TaskSystem.Application.dll
-C:\Aula\Portifolio\MongoWebAPICRUD\TaskSystem\bin\Debug\net8.0\TaskSystem.Application.pdb

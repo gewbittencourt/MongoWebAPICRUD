@@ -38,7 +38,6 @@
 		{
 			Title = title;
 			Description = description;
-
 		}
 
 	}

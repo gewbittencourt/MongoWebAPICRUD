@@ -13,7 +13,9 @@
           "Swashbuckle.AspNetCore": "6.4.0",
           "TaskSystem.Application": "1.0.0",
           "TaskSystem.Domain": "1.0.0",
-          "TaskSystem.Infrastructure.MongoDb": "1.0.0"
+          "TaskSystem.Infrastructure.MongoDb": "1.0.0",
+          "coverlet.collector": "6.0.2",
+          "coverlet.msbuild": "6.0.2"
         },
         "runtime": {
           "TaskSystem.API.dll": {}
@@ -60,6 +62,8 @@
           }
         }
       },
+      "coverlet.collector/6.0.2": {},
+      "coverlet.msbuild/6.0.2": {},
       "DnsClient/1.6.1": {
         "dependencies": {
           "Microsoft.Win32.Registry": "5.0.0"
@@ -283,8 +287,7 @@
         "dependencies": {
           "AutoMapper": "13.0.1",
           "Moq": "4.20.70",
-          "TaskSystem.Domain": "1.0.0",
-          "TaskSystem.Service": "1.0.0"
+          "TaskSystem.Domain": "1.0.0"
         },
         "runtime": {
           "TaskSystem.Infrastructure.MongoDb.dll": {}
@@ -325,6 +328,20 @@
       "sha512": "sha512-rpYtIczkzGpf+EkZgDr9CClTdemhsrwA/W5hMoPjLkRFnXzH44zDLoovXeKtmxb1ykXK9aJVODSpiJml8CTw2g==",
       "path": "castle.core/5.1.1",
       "hashPath": "castle.core.5.1.1.nupkg.sha512"
+    },
+    "coverlet.collector/6.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bJShQ6uWRTQ100ZeyiMqcFlhP7WJ+bCuabUs885dJiBEzMsJMSFr7BOyeCw4rgvQokteGi5rKQTlkhfQPUXg2A==",
+      "path": "coverlet.collector/6.0.2",
+      "hashPath": "coverlet.collector.6.0.2.nupkg.sha512"
+    },
+    "coverlet.msbuild/6.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8b4jBNH7mcQy1otyQErjjIUuGD74XxKZ1wvDufbY7jhWwckl7wIa+icjwdPYeI0aYMS4Tp63LIZvyMFjWwOMDw==",
+      "path": "coverlet.msbuild/6.0.2",
+      "hashPath": "coverlet.msbuild.6.0.2.nupkg.sha512"
     },
     "DnsClient/1.6.1": {
       "type": "package",

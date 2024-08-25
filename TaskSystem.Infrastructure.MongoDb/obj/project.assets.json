@@ -434,21 +434,6 @@
         "runtime": {
           "bin/placeholder/TaskSystem.Domain.dll": {}
         }
-      },
-      "TaskSystem.Service/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "AutoMapper": "13.0.1",
-          "MongoDB.Driver": "2.28.0",
-          "TaskSystem.Domain": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/TaskSystem.Service.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/TaskSystem.Service.dll": {}
-        }
       }
     }
   },
@@ -1094,19 +1079,13 @@
       "type": "project",
       "path": "../TaskSystem.Domain/TaskSystem.Domain.csproj",
       "msbuildProject": "../TaskSystem.Domain/TaskSystem.Domain.csproj"
-    },
-    "TaskSystem.Service/1.0.0": {
-      "type": "project",
-      "path": "../TaskSystem.Service/TaskSystem.Service.csproj",
-      "msbuildProject": "../TaskSystem.Service/TaskSystem.Service.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "AutoMapper >= 13.0.1",
       "Moq >= 4.20.70",
-      "TaskSystem.Domain >= 1.0.0",
-      "TaskSystem.Service >= 1.0.0"
+      "TaskSystem.Domain >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1139,9 +1118,6 @@
           "projectReferences": {
             "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Domain\\TaskSystem.Domain.csproj": {
               "projectPath": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Domain\\TaskSystem.Domain.csproj"
-            },
-            "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Service\\TaskSystem.Service.csproj": {
-              "projectPath": "C:\\Aula\\Portifolio\\MongoWebAPICRUD\\TaskSystem.Service\\TaskSystem.Service.csproj"
             }
           }
         }

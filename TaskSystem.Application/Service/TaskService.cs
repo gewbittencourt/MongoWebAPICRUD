@@ -94,13 +94,6 @@ namespace TaskSystem.Application.Service
 			try
 			{
 				var resultTask = await _taskRepository.GetAllTasks(cancellationToken);
-
-				if (resultTask == null)
-				{
-					_logger.LogWarning("Nenhuma tarefa encontrada!");
-					throw new InvalidOperationException("Nenhuma tarefa foi encontrada.");
-				}
-
 				var returnList = _mapper.Map<IEnumerable<GetTaskOutput>>(resultTask);
 				return BaseOutputApplication.Success(returnList);
 			}
@@ -156,25 +149,22 @@ namespace TaskSystem.Application.Service
 			try
 			{
 				var tasks = await _taskRepository.GetDetailedTask(id, cancellationToken);
-				if (tasks != null)
-				{
-					tasks.UpdateTask(string.IsNullOrEmpty(taskInput.Title) ? tasks.Title : taskInput.Title, string.IsNullOrEmpty(taskInput.Description) ? tasks.Description : taskInput.Description);
-				}
-				else
+				if (tasks is null)
 				{
 					_logger.LogWarning("Falha ao localizar a tarefa.");
 					throw new InvalidOperationException($"Falha ao localizar a tarefa.");
 				}
 
-				var update = await _taskRepository.UpdateTask(tasks, cancellationToken);
+				tasks.UpdateTask(string.IsNullOrEmpty(taskInput.Title) ? tasks.Title : taskInput.Title, string.IsNullOrEmpty(taskInput.Description) ? tasks.Description : taskInput.Description);
+				var updated = await _taskRepository.UpdateTask(tasks, cancellationToken);
 
-				if (!update)
+				if (!updated)
 				{
 					_logger.LogError("Falha ao atualizar a tarefa. A tarefa pode não existir ou os dados não foram salvos corretamente.");
 					throw new InvalidOperationException($"Falha ao atualizar a tarefa com o ID {id}. A tarefa pode não existir ou os dados não foram salvos corretamente.");
 				}
 
-				return BaseOutputApplication.Success(update);
+				return BaseOutputApplication.Success(updated);
 			}
 			catch (ArgumentNullException ex)
 			{
