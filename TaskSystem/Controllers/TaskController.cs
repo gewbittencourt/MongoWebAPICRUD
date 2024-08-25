@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using TaskSystem.Domain.Entities;
-using TaskSystem.Service.DTO;
-using TaskSystem.Service.Interface;
+﻿using Microsoft.AspNetCore.Mvc;
+using TaskSystem.API.BaseResponse;
+using TaskSystem.Application.Input;
+using TaskSystem.Application.Interface;
 
 namespace TaskSystem.API.Controllers
 {
-	//[Route("api/[controller]")]
 	[ApiController]
+	[ApiVersion("1")]
+	[Route("api/v1/[controller]")]
 	public class TaskController : ControllerBase
 	{
 		private readonly ITaskService _taskService;
@@ -17,199 +17,92 @@ namespace TaskSystem.API.Controllers
 			_taskService = taskService;
 		}
 
-		[HttpPost("create")]
-		public async Task<IActionResult> Create(TasksDTO taskDto, CancellationToken cancellationToken)
-		{
-			try
-			{
-				var result = await _taskService.CreateNewTask(taskDto, cancellationToken);
-				if (result != null)
-				{
-					return new JsonResult(result);
-				}
-				return BadRequest(new
-				{
-					message = "Não foi possível completar a tarefa."
-				});
 
-			}
-			catch (ArgumentNullException ex)
+		[HttpPost]
+		[Route("")]
+		public async Task<IActionResult> Create([FromBody] CreateTaskInput taskInput, CancellationToken cancellationToken)
+		{
+			var result = await _taskService.CreateNewTask(taskInput, cancellationToken);
+			if (result.IsValid)
 			{
-				return BadRequest(new { message = "Dados inválidos: " + ex.Message, details = ex.StackTrace });
+				return Ok(BaseResponseController.CreateSuccessResponse(result));
 			}
-			catch (OperationCanceledException ex)
-			{
-				return StatusCode(StatusCodes.Status408RequestTimeout, new { message = "Operação cancelada.", details = ex.Message });
-			}
-			catch (Exception ex)
-			{
-				return StatusCode(StatusCodes.Status500InternalServerError, new
-				{
-					message = "Ocorreu um erro inesperado. Tente novamente mais tarde.",
-					details = ex.Message,
-					exceptionType = ex.GetType().Name
-				});
-			}
+			return (IActionResult)BaseResponseController.ErrorResponse(result.Errors);
+
 		}
 
-		[HttpGet("get")]
+		[HttpGet]
+		[Route("")]
 		public async Task<IActionResult> GetAllTasks([FromQuery] Guid? id, CancellationToken cancellationToken)
 		{
-			try
+			if (id.HasValue)
 			{
-				if (id.HasValue)
+				var result = await _taskService.GetDetailedTask(id.Value, cancellationToken);
+				if (result.IsValid)
 				{
-					var result = await _taskService.GetDetailedTask(id.Value, cancellationToken);
-					if (result != null)
-					{
-						return new JsonResult(result);
-					}
-					return new JsonResult("Não foi encontrado a tarefa desejada.");
-
+					return Ok(BaseResponseController.GetTaskSuccessResponse(result));
 				}
-				else
-				{
-					var result = await _taskService.GetAllTasks(cancellationToken);
-					if (result.Count() >= 1)
-					{
-						return new JsonResult(result);
-					}
-					return new JsonResult("Não existem tarefas cadastradas.");
+				return (IActionResult)BaseResponseController.ErrorResponse(result.Errors);
 
-				}
 			}
-			catch (ArgumentNullException ex)
+			else
 			{
-				return BadRequest(new { message = "Dados inválidos: " + ex.Message, details = ex.StackTrace });
-			}
-			catch (OperationCanceledException ex)
-			{
-				return StatusCode(StatusCodes.Status408RequestTimeout, new { message = "Operação cancelada.", details = ex.Message });
-			}
-			catch (Exception ex)
-			{
-				return StatusCode(StatusCodes.Status500InternalServerError, new
+				var result = await _taskService.GetAllTasks(cancellationToken);
+				if (result.IsValid)
 				{
-					message = "Ocorreu um erro inesperado. Tente novamente mais tarde.",
-					details = ex.Message,
-					exceptionType = ex.GetType().Name
-				});
+					return Ok(BaseResponseController.GetAllSuccessResponse(result));
+				}
+				return (IActionResult)BaseResponseController.ErrorResponse(result.Errors);
+
 			}
 		}
 
 
 
-		[HttpDelete("delete")]
-		public async Task<IActionResult> DeleteTask(Guid id, CancellationToken cancellationToken)
+		[HttpDelete]
+		[Route("{id}")]
+		public async Task<IActionResult> DeleteTask([FromRoute] Guid id, CancellationToken cancellationToken)
 		{
-			try
-			{
-				var result = await _taskService.DeleteTask(id, cancellationToken);
-				if (!result)
-				{
-					return BadRequest(new
-					{
-						message = "Não foi possível completar a tarefa.",
-						taskId = id
-					});
-				}
-				return Ok(new { message = "Tarefa completada com sucesso.", taskId = id });
 
-			}
-			catch (ArgumentNullException ex)
+			var result = await _taskService.DeleteTask(id, cancellationToken);
+			if (result.IsValid)
 			{
-				return BadRequest(new { message = "Dados inválidos: " + ex.Message, details = ex.StackTrace });
+				return Ok(BaseResponseController.DeleteSuccessResponse(result));
 			}
-			catch (OperationCanceledException ex)
-			{
-				return StatusCode(StatusCodes.Status408RequestTimeout, new { message = "Operação cancelada.", details = ex.Message });
-			}
-			catch (Exception ex)
-			{
-				return StatusCode(StatusCodes.Status500InternalServerError, new
-				{
-					message = "Ocorreu um erro inesperado. Tente novamente mais tarde.",
-					details = ex.Message,
-					exceptionType = ex.GetType().Name
-				});
-			}
+			return (IActionResult)BaseResponseController.ErrorResponse(result.Errors);
 
 		}
 
 
-		[HttpPut("update")]
-
-		public async Task<IActionResult> UpdateTask(Guid id, TasksDTO taskDto, CancellationToken cancellationToken)
+		[HttpPut]
+		[Route("{id}")]
+		public async Task<IActionResult> UpdateTask([FromRoute] Guid id, [FromBody] CreateTaskInput taskInput, CancellationToken cancellationToken)
 		{
-			try
-			{
-				var result = await _taskService.UpdateTask(id, taskDto, cancellationToken);
-				if (!result)
-				{
-					return BadRequest(new
-					{
-						message = "Não foi possível completar a tarefa.",
-						taskId = id
-					});
-				}
-				return Ok(new { message = "Tarefa completada com sucesso.", taskId = id });
-			}
-			catch (ArgumentNullException ex)
-			{
-				return BadRequest(new { message = "Dados inválidos: " + ex.Message, details = ex.StackTrace });
-			}
-			catch (OperationCanceledException ex)
-			{
-				return StatusCode(StatusCodes.Status408RequestTimeout, new { message = "Operação cancelada.", details = ex.Message });
-			}
-			catch (Exception ex)
-			{
-				return StatusCode(StatusCodes.Status500InternalServerError, new
-				{
-					message = "Ocorreu um erro inesperado. Tente novamente mais tarde.",
-					details = ex.Message,
-					exceptionType = ex.GetType().Name
-				});
-			}
 
+			var result = await _taskService.UpdateTask(id, taskInput, cancellationToken);
+			if (result.IsValid)
+			{
+
+				return Ok(BaseResponseController.UpdateTaskSuccessResponse(result));
+			}
+			return (IActionResult)BaseResponseController.ErrorResponse(result.Errors);
 		}
 
-		[HttpPut("completed")]
-		public async Task<IActionResult> CompleteTask(Guid id, CancellationToken cancellationToken)
+
+		[HttpPut]
+		[Route("{id}/Complete")]
+		public async Task<IActionResult> CompleteTask([FromRoute] Guid id, CancellationToken cancellationToken)
 		{
-			try
-			{
-				var result = await _taskService.CompletedTask(id, cancellationToken);
+			var result = await _taskService.CompleteTask(id, cancellationToken);
 
-				if (!result)
-				{
-					return BadRequest(new
-					{
-						message = "Não foi possível completar a tarefa.",
-						taskId = id
-					});
-				}
+			if (result.IsValid)
+			{
+				return Ok(BaseResponseController.CompleteTaskSuccessResponse(result));
+			}
+			return (IActionResult)BaseResponseController.ErrorResponse(result.Errors);
 
-				return Ok(new { message = "Tarefa completada com sucesso.", taskId = id });
-			}
-			catch (ArgumentNullException ex)
-			{
-				return BadRequest(new { message = "Dados inválidos: " + ex.Message, details = ex.StackTrace });
-			}
-			catch (OperationCanceledException ex)
-			{
-				return StatusCode(StatusCodes.Status408RequestTimeout, new { message = "Operação cancelada.", details = ex.Message });
-			}
-			catch (Exception ex)
-			{
-				return StatusCode(StatusCodes.Status500InternalServerError, new
-				{
-					message = "Ocorreu um erro inesperado. Tente novamente mais tarde.",
-					details = ex.Message,
-					exceptionType = ex.GetType().Name
-				});
-			}
 		}
+
 
 	}
 }

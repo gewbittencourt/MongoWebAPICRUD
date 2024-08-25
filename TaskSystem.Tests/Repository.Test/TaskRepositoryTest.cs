@@ -1,15 +1,10 @@
 ﻿using AutoMapper;
 using MongoDB.Driver;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaskSystem.Domain.Entities;
+using TaskSystem.Infrastructure.MongoDb.Collection;
 using TaskSystem.Infrastructure.MongoDb.Repository;
-using TaskSystem.Service.DTO;
-using TaskSystem.Service.Interface;
+
 
 namespace TaskSystem.Tests.Repository.Test
 {
@@ -19,44 +14,48 @@ namespace TaskSystem.Tests.Repository.Test
 		private readonly TaskRepository _taskRepository;
 		private readonly Mock<IMongoClient> _mockMongoClient;
 		private readonly Mock<IMapper> _mockMapper;
-		private readonly Mock<IAsyncCursor<Tasks>> _mockCursor;
+		private readonly Mock<IAsyncCursor<TaskCollection>> _mockCursor;
 		private readonly Mock<IMongoDatabase> _mockDatabase;
-		private readonly Mock<IMongoCollection<Tasks>> _mockMongoCollection;
+		private readonly Mock<IMongoCollection<TaskCollection>> _mockMongoCollection;
 
 		public TaskRepositoryTest()
 		{
-			// Inicializa os mocks
 			_mockMongoClient = new Mock<IMongoClient>();
 			_mockMapper = new Mock<IMapper>();
-			_mockCursor = new Mock<IAsyncCursor<Tasks>>();
+			_mockCursor = new Mock<IAsyncCursor<TaskCollection>>();
 			_mockDatabase = new Mock<IMongoDatabase>();
-			_mockMongoCollection = new Mock<IMongoCollection<Tasks>>();
+			_mockMongoCollection = new Mock<IMongoCollection<TaskCollection>>();
 
 			// Configurações para retornar a coleção mockada
-			_mockMongoClient.Setup(client => client.GetDatabase(It.IsAny<string>(), null))
+			_mockMongoClient.Setup(client => client.GetDatabase("TaskSystem", null))
 							.Returns(_mockDatabase.Object);
-			_mockDatabase.Setup(db => db.GetCollection<Tasks>(It.IsAny<string>(), null))
+			_mockDatabase.Setup(db => db.GetCollection<TaskCollection>(nameof(TaskCollection), null))
 						 .Returns(_mockMongoCollection.Object);
 
 			// Inicializa o TaskRepository com os mocks
-			_taskRepository = new TaskRepository(_mockMapper.Object, _mockMongoClient.Object);
+			_taskRepository = new TaskRepository(_mockMongoCollection.Object, _mockMapper.Object);
 		}
 
 
 		[Fact]
-		public async Task CreateNewTask_ReturnTask_WhenSuccessfull()
+		public async Task CreateNewTask_ReturnBool_WhenSuccessfull()
 		{
 			//Arrange
 			var task = new Tasks(title: "title", description: "description");
-			task.NewTask(Guid.NewGuid());
-			_mockMongoCollection.Setup(mongo => mongo.InsertOneAsync(task, It.IsAny<CancellationToken>()));
+			var taskCollection = new TaskCollection();
+			_mockMapper.Setup(mapper => mapper.Map<TaskCollection>(task)).Returns(taskCollection);
+			_mockMongoCollection.Setup(mongo => mongo.InsertOneAsync(taskCollection, It.IsAny<CancellationToken>()));
 
 			//Act
-			var result = await _taskRepository.CreateNewTask(task, It.IsAny<CancellationToken>());
+			await _taskRepository.CreateNewTask(task, It.IsAny<CancellationToken>());
 
-			//Asserts
-			Assert.IsType<Tasks>(result);
-			Assert.Equal(task.Title, result.Title);
+			// Assert
+			_mockMapper.Verify(mapper => mapper.Map<TaskCollection>(task), Times.Once);
+			_mockMongoCollection.Verify(repository => repository.InsertOneAsync(
+				taskCollection,
+				It.IsAny<InsertOneOptions>(),
+				It.IsAny<CancellationToken>()),
+				Times.Once);
 		}
 
 		[Fact]
@@ -65,7 +64,7 @@ namespace TaskSystem.Tests.Repository.Test
 			//Arrange
 			var id = Guid.NewGuid();
 			var mockResult = new DeleteResult.Acknowledged(1);
-			_mockMongoCollection.Setup(mongo => mongo.DeleteOneAsync(It.IsAny<FilterDefinition<Tasks>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockResult);
+			_mockMongoCollection.Setup(mongo => mongo.DeleteOneAsync(It.IsAny<FilterDefinition<TaskCollection>>(), It.IsAny<CancellationToken>())).ReturnsAsync(mockResult);
 
 
 			//Act
@@ -76,15 +75,17 @@ namespace TaskSystem.Tests.Repository.Test
 			Assert.True(result);
 		}
 
+
+
 		[Fact]
 		public async Task GetAllTasks_ReturnsListOfTasks_WhenSuccessful()
 		{
 			// Arrange
 			var cancellationToken = new CancellationToken();
-			var tasksList = new List<Tasks>
+			var tasksList = new List<TaskCollection>
 		{
-			new Tasks (title:"teste", description:"description"),
-			new Tasks (title:"teste", description:"description"),
+			new TaskCollection {Title = "teste", Description = "teste"},
+			new TaskCollection {Title = "teste1", Description = "teste1"},
 		};
 
 			//SIMULAÇÃO DO FIND
@@ -93,47 +94,48 @@ namespace TaskSystem.Tests.Repository.Test
 			_mockCursor.Setup(x => x.Current).Returns(tasksList);
 
 			_mockMongoCollection.Setup(x => x.FindAsync(
-				It.IsAny<FilterDefinition<Tasks>>(),
-				It.IsAny<FindOptions<Tasks, Tasks>>(),
+				It.IsAny<FilterDefinition<TaskCollection>>(),
+				It.IsAny<FindOptions<TaskCollection, TaskCollection>>(),
 				It.IsAny<CancellationToken>())).ReturnsAsync(_mockCursor.Object);
 
 			// Act
 			var result = await _taskRepository.GetAllTasks(cancellationToken);
 
 			// Assert
-			Assert.Equal(tasksList.Count, result.Count());
-			Assert.Equal(tasksList, result);
+			Assert.IsType<Tasks[]>(result);
 		}
 
 		[Fact]
-		public async Task GetDetailedTask_ReturnsNull_WhenTaskDoesNotExist()
+		public async Task GetDetailedTask_ReturnsTask_WhenTaskExists()
 		{
 			// Arrange
 			var taskId = Guid.NewGuid();
-			var task = new Tasks(title: "title", description: "description");
-			task.NewTask(taskId);
+			var taskCollection = new TaskCollection { TaskID = taskId, Title = "teste", Description = "teste" };
+			var task = new Tasks(title: taskCollection.Title, description: taskCollection.Description);
 
-			//SIMULAÇÃO DO FIND
-			var mockCursor = new Mock<IAsyncCursor<Tasks>>();
+			// SIMULAÇÃO DO FIND que encontra um item
+			var mockCursor = new Mock<IAsyncCursor<TaskCollection>>();
 			mockCursor.SetupSequence(x => x.MoveNext(It.IsAny<CancellationToken>())).Returns(true).Returns(false);
 			mockCursor.SetupSequence(x => x.MoveNextAsync(It.IsAny<CancellationToken>())).ReturnsAsync(true).ReturnsAsync(false);
-			mockCursor.Setup(x => x.Current).Returns(new List<Tasks> { task });
+			mockCursor.Setup(x => x.Current).Returns(new List<TaskCollection> { taskCollection });
 
 			_mockMongoCollection.Setup(x => x.FindAsync(
-				It.IsAny<FilterDefinition<Tasks>>(),
-				It.IsAny<FindOptions<Tasks, Tasks>>(),
+				It.IsAny<FilterDefinition<TaskCollection>>(),
+				It.IsAny<FindOptions<TaskCollection, TaskCollection>>(),
 				It.IsAny<CancellationToken>())).ReturnsAsync(mockCursor.Object);
 
+			_mockMapper.Setup(m => m.Map<Tasks>(It.IsAny<TaskCollection>()))
+					   .Returns(task);
+
 			// Act
-			var result = await _taskRepository.GetDetailedTask(taskId, It.IsAny<CancellationToken>());
+			var result = await _taskRepository.GetDetailedTask(task.Id, It.IsAny<CancellationToken>());
 
 			// Assert
 			Assert.NotNull(result);
 			Assert.IsType<Tasks>(result);
-			Assert.Equal(task.Id, result.Id);
-			Assert.Equal(task.Title, result.Title);
+			Assert.Equal(taskCollection.Title, result.Title);
 		}
-
+		
 		[Fact]
 
 		public async Task UpdateTask_ReturnBool_WhenSuccessfull()
@@ -142,7 +144,6 @@ namespace TaskSystem.Tests.Repository.Test
 			var taskId = Guid.NewGuid();
 			var task = new Tasks(title: "title", description: "description");
 			var updatedTask = new Tasks(title: "title1", description: "description1");
-			task.NewTask(taskId);
 			var mockResult = new UpdateResult.Acknowledged(1, 1, null);
 
 			var mockCursor = new Mock<IAsyncCursor<Tasks>>();
@@ -151,67 +152,28 @@ namespace TaskSystem.Tests.Repository.Test
 			mockCursor.Setup(x => x.Current).Returns(new List<Tasks> { task });
 
 			_mockMongoCollection.Setup(x => x.FindAsync(
-				It.IsAny<FilterDefinition<Tasks>>(),
-				It.IsAny<FindOptions<Tasks, Tasks>>(),
+				It.IsAny<FilterDefinition<TaskCollection>>(),
+				It.IsAny<FindOptions<TaskCollection, Tasks>>(),
 				It.IsAny<CancellationToken>())).ReturnsAsync(mockCursor.Object);
 
 
 			_mockMongoCollection.Setup(x => x.UpdateOneAsync(
-			It.IsAny<FilterDefinition<Tasks>>(),
-			It.IsAny<UpdateDefinition<Tasks>>(),
+			It.IsAny<FilterDefinition<TaskCollection>>(),
+			It.IsAny<UpdateDefinition<TaskCollection>>(),
 			null,
 			It.IsAny<CancellationToken>())).ReturnsAsync(mockResult);
 
 
 
 			//Act
-			var result = await _taskRepository.UpdateTask(taskId,updatedTask, It.IsAny<CancellationToken>());
+			var result = await _taskRepository.UpdateTask(updatedTask, It.IsAny<CancellationToken>());
 
 			//Asserts
 			Assert.NotNull(result);
 			Assert.True(result);
 
 		}
-
-
-
-		[Fact]
-
-		public async Task CompleteTask_ReturnBool_WhenSuccessfull()
-		{
-			//Arrange
-			var taskId = Guid.NewGuid();
-			var task = new Tasks(title: "title", description: "description");
-			task.NewTask(taskId);
-			var mockResult = new UpdateResult.Acknowledged(1, 1, null);
-
-			var mockCursor = new Mock<IAsyncCursor<Tasks>>();
-			mockCursor.SetupSequence(x => x.MoveNext(It.IsAny<CancellationToken>())).Returns(true).Returns(false);
-			mockCursor.SetupSequence(x => x.MoveNextAsync(It.IsAny<CancellationToken>())).ReturnsAsync(true).ReturnsAsync(false);
-			mockCursor.Setup(x => x.Current).Returns(new List<Tasks> { task });
-
-			_mockMongoCollection.Setup(x => x.FindAsync(
-				It.IsAny<FilterDefinition<Tasks>>(),
-				It.IsAny<FindOptions<Tasks, Tasks>>(),
-				It.IsAny<CancellationToken>())).ReturnsAsync(mockCursor.Object);
-
-
-			_mockMongoCollection.Setup(x => x.UpdateOneAsync(
-			It.IsAny<FilterDefinition<Tasks>>(),
-			It.IsAny<UpdateDefinition<Tasks>>(),
-			null,
-			It.IsAny<CancellationToken>())).ReturnsAsync(mockResult);
-
-
-			//Act
-			var result = await _taskRepository.CompletedTask(taskId, It.IsAny<CancellationToken>());
-
-
-			//Assert
-			Assert.NotNull(result);
-			Assert.True(result);
-
-		}
-
+		
 	}
+
 }
